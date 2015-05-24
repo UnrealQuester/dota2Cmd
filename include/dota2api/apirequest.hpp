@@ -1,4 +1,5 @@
 #include <string>
+#include <map>
 
 namespace dota2
 {
@@ -9,13 +10,16 @@ namespace dota2
     constexpr auto ITEMS_API        = "IEconDOTA2_570/GetGameItems/V1/";
     constexpr auto API_SERVER       = "https://api.steampowered.com";
 
+    typedef std::map<std::string, std::string> Query;
     class APIRequest
     {
         public:
-            APIRequest(std::string request, std::string key);
+            APIRequest(std::string request, std::string key, Query query = Query());
             std::string getUrl();
 
         private:
+            static std::string urlEncode(const std::string &value);
+
             std::string url;
     };
 }
