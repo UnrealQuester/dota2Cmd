@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+set(PROJECT_NAME dota2cmd)
+add_subdirectory(tests)
+enable_testing()
+add_test(NAME UnitTests COMMAND testrunner)
