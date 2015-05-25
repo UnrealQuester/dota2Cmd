@@ -1,7 +1,8 @@
 #include "dota2api/apirequest.hpp"
 #include "gtest/gtest.h"
 
-TEST(APIRequest, Init) {
+TEST(APIRequest, Init)
+{
     dota2::APIRequest request(dota2::MATCHHISTORY_API, "key");
     EXPECT_EQ
         (
@@ -10,7 +11,8 @@ TEST(APIRequest, Init) {
         );
 }
 
-TEST(APIRequest, Query) {
+TEST(APIRequest, Query)
+{
     dota2::Query query;
     query.insert({"hero_id", "1234"});
     dota2::APIRequest request(dota2::MATCHHISTORY_API, "key", query);
