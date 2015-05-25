@@ -1,6 +1,7 @@
 #include "apirequest.hpp"
 #include <sstream>
 #include <iomanip>
+#include <stdexcept>
 #include <curl/curl.h>
 
 dota2::APIRequest::APIRequest(std::string request, std::string key, dota2::Query query)
@@ -28,11 +29,19 @@ std::string dota2::APIRequest::runRequest()
     std::string buffer;
     CURL* c;
     c = curl_easy_init();
+    if(!c)
+    {
+        throw std::runtime_error("Unable to initialize curl");
+    }
     curl_easy_setopt(c, CURLOPT_URL, url.c_str());
     curl_easy_setopt(c, CURLOPT_WRITEFUNCTION, writeCallback);
     curl_easy_setopt(c, CURLOPT_WRITEDATA, &buffer);
-    curl_easy_perform(c);
+    CURLcode res = curl_easy_perform(c);
     curl_easy_cleanup(c);
+    if(res != CURLE_OK)
+    {
+        throw std::runtime_error(curl_easy_strerror(res));
+    }
     return buffer;
 }
 
