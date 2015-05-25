@@ -1,6 +1,7 @@
 #include "apirequest.hpp"
 #include <sstream>
 #include <iomanip>
+#include <curl/curl.h>
 
 dota2::APIRequest::APIRequest(std::string request, std::string key, dota2::Query query)
 {
@@ -14,6 +15,25 @@ dota2::APIRequest::APIRequest(std::string request, std::string key, dota2::Query
 std::string dota2::APIRequest::getUrl()
 {
     return url;
+}
+
+static size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+        ((std::string*)userp)->append((char*)contents, size * nmemb);
+            return size * nmemb;
+}
+
+std::string dota2::APIRequest::runRequest()
+{
+    std::string buffer;
+    CURL* c;
+    c = curl_easy_init();
+    curl_easy_setopt(c, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(c, CURLOPT_WRITEFUNCTION, writeCallback);
+    curl_easy_setopt(c, CURLOPT_WRITEDATA, &buffer);
+    curl_easy_perform(c);
+    curl_easy_cleanup(c);
+    return buffer;
 }
 
 std::string dota2::APIRequest::urlEncode(const std::string &value)

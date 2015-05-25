@@ -16,6 +16,7 @@ namespace dota2
         public:
             APIRequest(std::string request, std::string key, Query query = Query());
             std::string getUrl();
+            std::string runRequest();
 
         private:
             static std::string urlEncode(const std::string &value);
