@@ -42,3 +42,30 @@ TEST(APIRequest, Escaping)
          "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V1/?key=key&player_name=foo%20bar"
         );
 }
+
+TEST(APIRequest, UrlConstructor)
+{
+    dota2::APIRequest request("foobar.com");
+    EXPECT_EQ
+        (
+         request.getUrl(),
+         "foobar.com"
+        );
+}
+
+TEST(APIRequest, setUrl)
+{
+    dota2::APIRequest request("foobar.com");
+    request.setUrl("barfoo.org");
+    EXPECT_EQ
+        (
+         request.getUrl(),
+         "barfoo.org"
+        );
+}
+
+TEST(APIRequest, runRequestException)
+{
+    dota2::APIRequest request("failurl");
+    EXPECT_THROW(request.runRequest(), std::exception);
+}

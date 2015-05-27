@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include <curl/curl.h>
 
-dota2::APIRequest::APIRequest(std::string request, std::string key, dota2::Query query)
+dota2::APIRequest::APIRequest(const std::string &request, const std::string &key, const dota2::Query &query)
 {
     url = std::string(API_SERVER) + "/" + request + "?key=" + key;
     for(auto q : query)
@@ -13,9 +13,19 @@ dota2::APIRequest::APIRequest(std::string request, std::string key, dota2::Query
     }
 }
 
+dota2::APIRequest::APIRequest(const std::string &url)
+{
+    setUrl(url);
+}
+
 std::string dota2::APIRequest::getUrl()
 {
     return url;
+}
+
+void dota2::APIRequest::setUrl(const std::string &url)
+{
+    this->url = url;
 }
 
 static size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp)

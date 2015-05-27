@@ -14,7 +14,9 @@ namespace dota2
     class APIRequest
     {
         public:
-            APIRequest(std::string request, std::string key, Query query = Query());
+            APIRequest(const std::string &request, const std::string &key, const Query &query = Query());
+            APIRequest(const std::string &url);
+            void setUrl(const std::string &url);
             std::string getUrl();
             std::string runRequest();
 
