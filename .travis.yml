@@ -13,4 +13,4 @@ script:
   - ./tests/testrunner
 
 after_success:
-  - cd .. && coveralls --exclude tests --exclude build/CMakeFiles
+  - cd .. && coveralls --exclude tests --exclude build/CMakeFiles --exclude src/main.cpp
