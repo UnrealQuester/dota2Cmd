@@ -4,11 +4,11 @@
 namespace dota2
 {
 
-    constexpr auto MATCHHISTORY_API = "IDOTA2Match_570/GetMatchHistory/V1/";
-    constexpr auto MATCHDETAILS_API = "IDOTA2Match_570/GetMatchDetails/V1/";
-    constexpr auto HEROES_API       = "IEconDOTA2_570/GetHeroes/V1/";
-    constexpr auto ITEMS_API        = "IEconDOTA2_570/GetGameItems/V1/";
-    constexpr auto API_SERVER       = "https://api.steampowered.com";
+    const auto MATCHHISTORY_API = "IDOTA2Match_570/GetMatchHistory/V1/";
+    const auto MATCHDETAILS_API = "IDOTA2Match_570/GetMatchDetails/V1/";
+    const auto HEROES_API       = "IEconDOTA2_570/GetHeroes/V1/";
+    const auto ITEMS_API        = "IEconDOTA2_570/GetGameItems/V1/";
+    const auto API_SERVER       = "https://api.steampowered.com";
 
     typedef std::map<std::string, std::string> Query;
     class APIRequest

@@ -7,10 +7,34 @@ compiler:
 before_install:
   - pip install --user cpp-coveralls
 
+before_script:
+  - sudo add-apt-repository --yes ppa:boost-latest/ppa
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+  - sudo add-apt-repository --yes ppa:h-rayflood/llvm
+  - sudo apt-get update -qq
+  - if [ "${CXX}" == "g++"  ]; then
+      sudo apt-get install g++-4.8 gdb;
+      sudo apt-get install libboost1.55-all-dev;
+      export CXX="g++-4.8" CC="gcc-4.8";
+    fi
+  - if [ "${CXX}" == "clang++"  ]; then
+      sudo apt-get install clang-3.4 gdb;
+      sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.4 50;
+      sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.4 50;
+      export CXX="clang++-3.4" CC="clang-3.4";
+      svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_55_0/ boost --quiet;
+      cd boost;
+      ./bootstrap.sh cxxflags="-std=c++11" --with-toolset=clang;
+      ./b2 toolset=clang cxxflags="-std=c++11" variant=debug link=shared;
+      cd ..;
+      export BOOST_ROOT=$TRAVIS_BUILD_DIR/boost;
+    fi
+
 script:
-  - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage ..
-  - make
-  - ./tests/testrunner
+  - git submodule update --init --recursive
+  - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug ..
+  - make VERBOSE=1
+  - gdb --eval-command=run --eval-command=bt --eval-command=quit tests/testrunner
 
 after_success:
-  - cd .. && coveralls --exclude tests --exclude build/CMakeFiles --exclude src/main.cpp
+  - cd .. && coveralls --include include/dota2api
