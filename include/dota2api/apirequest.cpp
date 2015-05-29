@@ -2,7 +2,9 @@
 #include <sstream>
 #include <iomanip>
 #include <stdexcept>
-#include <curl/curl.h>
+#include <boost/network/protocol/http/client.hpp>
+using namespace boost::network;
+using namespace boost::network::http;
 
 dota2::APIRequest::APIRequest(const std::string &request, const std::string &key, const dota2::Query &query)
 {
@@ -28,31 +30,13 @@ void dota2::APIRequest::setUrl(const std::string &url)
     this->url = url;
 }
 
-static size_t writeCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
-        ((std::string*)userp)->append((char*)contents, size * nmemb);
-            return size * nmemb;
-}
-
 std::string dota2::APIRequest::runRequest()
 {
-    std::string buffer;
-    CURL* c;
-    c = curl_easy_init();
-    if(!c)
-    {
-        throw std::runtime_error("Unable to initialize curl");
-    }
-    curl_easy_setopt(c, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(c, CURLOPT_WRITEFUNCTION, writeCallback);
-    curl_easy_setopt(c, CURLOPT_WRITEDATA, &buffer);
-    CURLcode res = curl_easy_perform(c);
-    curl_easy_cleanup(c);
-    if(res != CURLE_OK)
-    {
-        throw std::runtime_error(curl_easy_strerror(res));
-    }
-    return buffer;
+    client::request request(url);
+    request << header("Connection", "close");
+    client client;
+    client::response response = client.get(request);
+    return body(response);
 }
 
 std::string dota2::APIRequest::urlEncode(const std::string &value)
