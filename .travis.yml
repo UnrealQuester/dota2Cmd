@@ -34,7 +34,7 @@ script:
   - git submodule update --init --recursive
   - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug ..
   - make VERBOSE=1
-  - gdb --eval-command=run --eval-command=bt --eval-command=quit tests/testrunner
+  - ./tests/testrunner
 
 after_success:
   - cd .. && coveralls --include include/dota2api
