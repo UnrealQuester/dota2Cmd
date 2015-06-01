@@ -1,3 +1,6 @@
+if(MSVC AND NOT BUILD_SHARED_LIBS)
+    set(gtest_force_shared_crt ON CACHE BOOL "Force gtest to build with shared run-time")
+endif()
 add_subdirectory(googletest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 include_directories(${dota2cmd_SOURCE_DIR}/include ${dota2cmd_SOURCE_DIR})
