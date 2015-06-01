@@ -1,3 +1,8 @@
+if(BUILD_SHARED_LIBS)
+    set(Boost_USE_STATIC_LIBS OFF)
+else()
+    set(Boost_USE_STATIC_LIBS ON)
+endif()
 set(CPP-NETLIB_BUILD_TESTS OFF CACHE BOOL "Build the unit tests.")
 set(CPP-NETLIB_BUILD_EXAMPLES OFF CACHE BOOL "Build the examples")
 add_subdirectory(cppnetlib)
