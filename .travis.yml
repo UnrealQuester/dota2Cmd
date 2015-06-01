@@ -25,7 +25,7 @@ before_script:
       svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_55_0/ boost --quiet;
       cd boost;
       ./bootstrap.sh cxxflags="-std=c++11" --with-toolset=clang;
-      ./b2 toolset=clang cxxflags="-std=c++11" variant=debug link=shared;
+      ./b2 toolset=clang cxxflags="-std=c++11" variant=debug link=shared -d0;
       cd ..;
       export BOOST_ROOT=$TRAVIS_BUILD_DIR/boost;
     fi
