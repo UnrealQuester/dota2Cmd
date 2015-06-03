@@ -30,4 +30,5 @@ build:
   project: Build\VS\dota2cmd.sln
 
 test_script:
+  - cd Build
   - ctest -VV
