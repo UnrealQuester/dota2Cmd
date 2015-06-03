@@ -28,3 +28,6 @@ install:
 
 build:
   project: Build\VS\dota2cmd.sln
+
+test_script:
+  - ctest -VV
