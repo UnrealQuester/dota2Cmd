@@ -5,21 +5,14 @@ environment:
   BOOST_LIBRARYDIR: c:\Libraries\boost\stage\lib
   matrix:
     - VS_VERSION: 12
-      VS_PLATFORM: win32
-      ADDRESS_MODEL: 32
-    - VS_VERSION: 12
       VS_PLATFORM: x64
       ADDRESS_MODEL: 64
 
 before_build:
   - git submodule update --init --recursive
-  - ps: appveyor DownloadFile "http://softlayer-dal.dl.sourceforge.net/project/boost/boost/1.57.0/boost_1_57_0.7z" -Timeout 1200000
-  # - ps: 7z x boost_1_57_0.7z -y -o"c:\Libraries\boost" boost_1_57_0\boost > $null
-  - cmd: cd c:\Libraries\boost
-  - cmd: bootstrap
-  - cmd: .\b2 --help
-  - cmd: .\b2 variant=debug threading=multi runtime-link=shared address-model=%ADDRESS_MODEL%
-  - ps: Get-ChildItem -Path c:\Libraries\boost\stage\lib
+  - cmd: if not exist %BOOST_LIBRARYDIR% cd c:\Libraries\boost
+  - cmd: if not exist %BOOST_LIBRARYDIR% bootstrap
+  - cmd: if not exist %BOOST_LIBRARYDIR% .\b2 variant=debug threading=multi runtime-link=shared address-model=%ADDRESS_MODEL%
   - cd %APPVEYOR_BUILD_FOLDER%
 
 build_script:
@@ -32,3 +25,6 @@ install:
 test_script:
   - cd Build
   - ctest -VV -C "Debug"
+
+cache:
+  - C:\Libraries\boost
