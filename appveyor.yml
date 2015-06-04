@@ -31,4 +31,4 @@ install:
 
 test_script:
   - cd Build
-  - ctest -VV
+  - ctest -VV -C "Debug"
