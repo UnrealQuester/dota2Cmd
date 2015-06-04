@@ -21,6 +21,11 @@ if (WIN32)
     add_definitions(-D_WIN32_WINNT=0x0501)
 endif(WIN32)
 
+if(BUILD_SHARED_LIBS)
+    set(Boost_USE_STATIC_LIBS OFF)
+else()
+    set(Boost_USE_STATIC_LIBS ON)
+endif()
 find_package(Boost 1.54.0 REQUIRED system filesystem thread date_time chrono
     regex)
 set(BOOST_CLIENT_LIBS

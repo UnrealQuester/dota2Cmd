@@ -1,8 +1,3 @@
-if(BUILD_SHARED_LIBS)
-    set(Boost_USE_STATIC_LIBS OFF)
-else()
-    set(Boost_USE_STATIC_LIBS ON)
-endif()
 find_package(Threads)
 link_directories(${Boost_LIBRARY_DIRS})
 add_library(dota2api dota2api/apirequest.cpp)
