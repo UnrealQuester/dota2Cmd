@@ -24,4 +24,4 @@ test_script:
   # - ctest -VV -C "Debug"
 
 cache:
-  - C:\Libraries\boost
+  - C:\Libraries\boost\stage
