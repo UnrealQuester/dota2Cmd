@@ -10,10 +10,7 @@ environment:
 
 before_build:
   - git submodule update --init --recursive
-  - cmd: if not exist %BOOST_LIBRARYDIR% cd c:\Libraries\boost
-  - cmd: if not exist %BOOST_LIBRARYDIR% bootstrap
-  - cmd: if not exist %BOOST_LIBRARYDIR% .\b2 variant=debug threading=multi runtime-link=shared address-model=%ADDRESS_MODEL%
-  - cd %APPVEYOR_BUILD_FOLDER%
+  - call .appveyor\build_boost.bat
 
 build_script:
   - cmake -H. -BBuild -G "Visual Studio %VS_VERSION%" -DCMAKE_GENERATOR_PLATFORM=%VS_PLATFORM% -DBOOST_ROOT="%BOOST_ROOT%" -DBOOST_LIBRARYDIR="%BOOST_LIBRARYDIR%"
