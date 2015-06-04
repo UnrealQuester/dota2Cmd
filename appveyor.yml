@@ -21,7 +21,7 @@ install:
 
 test_script:
   - cd Build
-  # - ctest -VV -C "Debug"
+  - cmd: ctest -C Debug -VV
 
 cache:
   - C:\Libraries\boost\stage
