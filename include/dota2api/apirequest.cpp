@@ -2,7 +2,6 @@
 #include <sstream>
 #include <iomanip>
 #include <stdexcept>
-#include <boost/network/protocol/http/client.hpp>
 using namespace boost::network;
 using namespace boost::network::http;
 
@@ -34,7 +33,6 @@ std::string dota2::APIRequest::runRequest()
 {
     client::request request(url);
     request << header("Connection", "close");
-    client client;
     client::response response = client.get(request);
     return body(response);
 }

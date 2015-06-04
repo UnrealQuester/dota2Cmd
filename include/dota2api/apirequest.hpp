@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <boost/network/protocol/http/client.hpp>
 
 namespace dota2
 {
@@ -24,5 +25,6 @@ namespace dota2
             static std::string urlEncode(const std::string &value);
 
             std::string url;
+            boost::network::http::client client;
     };
 }
