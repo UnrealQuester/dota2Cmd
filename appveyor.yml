@@ -6,13 +6,6 @@ environment:
 
 before_build:
   - git submodule update --init --recursive
-  - cmd: curl -L -o curl.zip http://curl.haxx.se/download/curl-%CURL_VERSION%.zip
-  - cmd: 7z x curl.zip > NUL
-  - cmd: rename curl-%CURL_VERSION% curl-src
-  - cmd: cd curl-src\winbuild
-  - cmd: nmake /f Makefile.vc mode=static
-  - cmd: cd ..\..
-  - cmd: dir %APPVEYOR_BUILD_FOLDER%\curl-src\builds\libcurl-vc-x64-release-static-ipv6-sspi-winssl-obj-lib
 
 build_script:
   - cmake -H. -BBuild -G "Visual Studio %VS_VERSION%" -DCMAKE_GENERATOR_PLATFORM=%VS_PLATFORM% -DCURL_LIBRARIES=%APPVEYOR_BUILD_FOLDER%\curl-src\builds\libcurl-vc-x64-release-static-ipv6-sspi-winssl-obj-lib\libcurl_a.lib -DCURL_INCLUDE_DIRS=%APPVEYOR_BUILD_FOLDER%\curl-src\include
@@ -20,9 +13,11 @@ build_script:
 
 install:
   - ps: gem install coveralls-lcov
-  - cmd: cinst -y curl
-  - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
+  - call .appveyor\build_curl.bat
 
 test_script:
   - cd Build
   - cmd: ctest -C Debug -VV
+
+cache:
+  - curl-src -> .appveyor\build_curl.bat
