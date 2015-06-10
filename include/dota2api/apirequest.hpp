@@ -1,3 +1,6 @@
+#ifndef APIREQUEST_HPP_R9YKDL8S
+#define APIREQUEST_HPP_R9YKDL8S
+
 #include <string>
 #include <map>
 
@@ -26,3 +29,5 @@ namespace dota2
             std::string url;
     };
 }
+
+#endif /* end of include guard: APIREQUEST_HPP_R9YKDL8S */
