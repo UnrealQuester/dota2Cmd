@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdint.h>
 #include <map>
+#include <string>
 
 namespace dota2
 {
