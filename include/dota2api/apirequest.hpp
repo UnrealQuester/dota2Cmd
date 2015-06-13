@@ -1,8 +1,7 @@
 #ifndef APIREQUEST_HPP_R9YKDL8S
 #define APIREQUEST_HPP_R9YKDL8S
 
-#include <string>
-#include <map>
+#include "baserequest.hpp"
 
 namespace dota2
 {
@@ -13,8 +12,7 @@ namespace dota2
     const auto ITEMS_API        = "IEconDOTA2_570/GetGameItems/V1/";
     const auto API_SERVER       = "https://api.steampowered.com";
 
-    typedef std::map<std::string, std::string> Query;
-    class APIRequest
+    class APIRequest : public BaseRequest
     {
         public:
             APIRequest(const std::string &request, const std::string &key, const Query &query = Query());

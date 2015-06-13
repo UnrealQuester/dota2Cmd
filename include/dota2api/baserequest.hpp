@@ -6,10 +6,10 @@
 
 namespace dota2
 {
+    typedef std::map<std::string, std::string> Query;
     class BaseRequest
     {
         public:
-            typedef std::map<std::string, std::string> Query;
             Query getQuery() const;
 
         protected:

@@ -1,4 +1,5 @@
 #include "apirequest.hpp"
+#include <algorithm>
 #include <sstream>
 #include <iomanip>
 #include <stdexcept>
@@ -11,6 +12,7 @@ dota2::APIRequest::APIRequest(const std::string &request, const std::string &key
     {
         url+= "&" + q.first + "=" + urlEncode(q.second);
     }
+    this->query = query;
 }
 
 dota2::APIRequest::APIRequest(const std::string &url)
