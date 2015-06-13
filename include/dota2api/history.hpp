@@ -3,8 +3,7 @@
 
 #include <vector>
 #include <stdint.h>
-#include <map>
-#include <string>
+#include "baserequest.hpp"
 
 namespace dota2
 {
@@ -51,7 +50,7 @@ namespace dota2
         VERY_HIGH,
     };
 
-    class HistoryRequest
+    class HistoryRequest : public BaseRequest
     {
         public:
             HistoryRequest &hero(int heroID);
@@ -63,10 +62,6 @@ namespace dota2
             HistoryRequest &startAt(uint64_t matchID);
             HistoryRequest &matches(int numMatches);
             HistoryRequest &tournament(bool tournamentOnly);
-            std::map<std::string, std::string> getQuery() const;
-
-        private:
-            std::map<std::string, std::string> query;
     };
 }
 

@@ -60,8 +60,3 @@ dota2::HistoryRequest &dota2::HistoryRequest::tournament(bool tournamentOnly)
     query.insert({"tournament_games_only", std::to_string((int)tournamentOnly)});
     return *this;
 }
-
-std::map<std::string, std::string> dota2::HistoryRequest::getQuery() const
-{
-    return query;
-}
