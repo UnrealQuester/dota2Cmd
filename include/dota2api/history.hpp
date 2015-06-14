@@ -53,6 +53,8 @@ namespace dota2
     class HistoryRequest : public BaseRequest
     {
         public:
+            typedef History obj;
+
             HistoryRequest &hero(int heroID);
             HistoryRequest &gameMode(GameMode gameMode);
             HistoryRequest &skillLevel(SkillLevel skillLevel);
