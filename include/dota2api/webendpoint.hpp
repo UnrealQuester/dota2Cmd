@@ -4,6 +4,7 @@
 #include <string>
 #include "apiendpoint.hpp"
 #include "baserequest.hpp"
+#include "json/json.h"
 
 namespace dota2
 {
@@ -13,10 +14,10 @@ namespace dota2
         public:
             WebAPIBackend(std::string key);
 
-            std::string query(const HistoryRequest &request);
+            Json::Value query(const HistoryRequest &request);
 
         protected:
-            std::string _query(std::string urlFragment, const BaseRequest &reuqest);
+            Json::Value _query(std::string urlFragment, const BaseRequest &reuqest);
 
         private:
             std::string key;

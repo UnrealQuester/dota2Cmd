@@ -21,6 +21,8 @@ if (WIN32)
     add_definitions(-D_WIN32_WINNT=0x0501)
 endif(WIN32)
 
+include_directories(include)
+include_directories(include/jsoncpp)
 add_subdirectory(include)
 add_subdirectory(src)
 add_subdirectory(tests)

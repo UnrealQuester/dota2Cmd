@@ -37,7 +37,7 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
     return realsize;
 }
 
-std::string dota2::APIRequest::runRequest()
+Json::Value dota2::APIRequest::runRequest()
 {
     CURLcode res;
     CURL *curl = curl_easy_init();
@@ -56,7 +56,9 @@ std::string dota2::APIRequest::runRequest()
         throw std::runtime_error(curl_easy_strerror(res));
     }
     curl_easy_cleanup(curl);
-    return responseBody;
+    Json::Value json;
+    Json::Reader().parse(responseBody, json);
+    return json;
 }
 
 std::string dota2::APIRequest::urlEncode(const std::string &value)

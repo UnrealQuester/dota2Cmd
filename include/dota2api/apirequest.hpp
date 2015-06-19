@@ -2,6 +2,7 @@
 #define APIREQUEST_HPP_R9YKDL8S
 
 #include "baserequest.hpp"
+#include "json/json.h"
 
 namespace dota2
 {
@@ -19,7 +20,7 @@ namespace dota2
             APIRequest(const std::string &url);
             void setUrl(const std::string &url);
             std::string getUrl();
-            std::string runRequest();
+            Json::Value runRequest();
 
         private:
             static std::string urlEncode(const std::string &value);
