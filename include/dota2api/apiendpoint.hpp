@@ -7,7 +7,8 @@ namespace dota2
     class APIEndpoint
     {
         public:
-            APIEndpoint(Backend backend) : backend(backend) { };
+            template<typename T>
+            APIEndpoint(T backend) : backend(backend) { };
 
             template<typename Request>
             typename Request::obj query(const Request &request)
