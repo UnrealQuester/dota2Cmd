@@ -31,4 +31,6 @@ script:
   - ./tests/testrunner
 
 after_success:
-  - cd .. && coveralls --include include/dota2api
+  - if [ "${CXX}" == "g++-4.8" ]; then
+      cd .. && coveralls --include include/dota2api;
+    fi
