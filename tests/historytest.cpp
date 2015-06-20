@@ -3,7 +3,7 @@
 
 TEST(History, getMatchIDs)
 {
-    dota2::History h({});
+    dota2::History h((std::vector<dota2::MatchID>()));
     EXPECT_EQ
         (
          h.getMatchIDs(),

@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdint.h>
 #include "baserequest.hpp"
+#include "json/json-forwards.h"
 
 namespace dota2
 {
@@ -12,6 +13,7 @@ namespace dota2
     {
         public:
             History(const std::vector<MatchID> &matchIDs);
+            History(const Json::Value &json);
             const std::vector<MatchID> &getMatchIDs() const;
 
         private:

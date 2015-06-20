@@ -1,6 +1,15 @@
 #include "history.hpp"
+#include "json/json.h"
 
 dota2::History::History(const std::vector<dota2::MatchID> &matchIDs) : matchIDs(matchIDs) { }
+
+dota2::History::History(const Json::Value &json)
+{
+    for(const auto &match : json["result"]["matches"])
+    {
+        matchIDs.push_back(match["match_id"].asInt());
+    }
+}
 
 const std::vector<dota2::MatchID> &dota2::History::getMatchIDs() const
 {
