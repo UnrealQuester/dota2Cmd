@@ -1,9 +1,20 @@
 #include "dota2api/history.hpp"
 #include "gtest/gtest.h"
+#include "json/json.h"
 
 TEST(History, getMatchIDs)
 {
     dota2::History h((std::vector<dota2::MatchID>()));
+    EXPECT_EQ
+        (
+         h.getMatchIDs(),
+         std::vector<dota2::MatchID>()
+        );
+}
+
+TEST(History, JSON)
+{
+    dota2::History h((Json::Value()));
     EXPECT_EQ
         (
          h.getMatchIDs(),
