@@ -21,6 +21,7 @@ if (WIN32)
     add_definitions(-D_WIN32_WINNT=0x0501)
 endif(WIN32)
 
+add_definitions(-DBETTER_ENUMS_MACRO_FILE="enum/enum_macros.h")
 include_directories(include)
 include_directories(include/jsoncpp)
 add_subdirectory(include)
