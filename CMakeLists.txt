@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(dota2cmd)
+project(dota2cmd CXX)
 set(PROJECT_NAME dota2cmd)
 include(CheckCXXCompilerFlag)
 if(UNIX)
