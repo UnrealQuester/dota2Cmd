@@ -27,7 +27,7 @@ TEST(HistoryRequest, filter)
     dota2::HistoryRequest request;
 
     request.hero(12)
-        .gameMode(dota2::GameMode::SOLO_MID)
+        .gameMode(dota2::GameMode::Solo_Mid)
         .skillLevel(dota2::SkillLevel::NORMAL)
         .minPlayers(2)
         .account(1)

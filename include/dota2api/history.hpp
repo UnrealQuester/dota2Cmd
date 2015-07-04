@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include "baserequest.hpp"
 #include "json/json-forwards.h"
+#include "gamemode.hpp"
 
 namespace dota2
 {
@@ -18,31 +19,6 @@ namespace dota2
 
         private:
             std::vector<MatchID> matchIDs;
-    };
-
-    enum GameMode {
-        UNKNWOWN,
-        ALL_PICK,
-        CAPTAINS_MODE,
-        RANDOM_DRAFT,
-        SINGLE_DRAFT,
-        ALL_RANDOM,
-        INRO,
-        DIRETIDE,
-        REVERSE_CAPTAINS_MODE,
-        GREEVILING,
-        TUTORIAL,
-        MID_ONLY,
-        LEAST_PLAYED,
-        NEW_PLAYER_POOL,
-        COMPENDIUM_MATCHMAKING,
-        CUSTOM,
-        CAPTAINS_DRAFT,
-        BALANCED_DRAFT,
-        ABILITY_DRAFT,
-        EVENT,
-        ALL_RANDOM_DEATCH_MATCH,
-        SOLO_MID,
     };
 
     enum SkillLevel {
