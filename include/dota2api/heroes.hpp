@@ -1,8 +1,6 @@
 #ifndef HEROES_HPP_HF3BYUB7
 #define HEROES_HPP_HF3BYUB7
 
-#include "enum/enum.h"
-
 namespace dota2
 {
     /*!
@@ -13,7 +11,7 @@ namespace dota2
     * of items is limited to 127 because of limitations in VC++.
     * The current number of items is 110.
     */
-    ENUM(Heroes, uint32_t,
+    enum class Heroes {
             Anti_Mage = 1,
             Axe = 2,
             Bane = 3,
@@ -123,7 +121,7 @@ namespace dota2
             Phoenix = 110,
             Oracle = 111,
             Techies = 105,
-            Winter_Wyvern = 112
-        )
+            Winter_Wyvern = 112,
+    };
 }
 #endif /* end of include guard: HEROES_HPP_HF3BYUB7 */

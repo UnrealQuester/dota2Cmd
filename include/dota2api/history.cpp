@@ -24,7 +24,7 @@ dota2::HistoryRequest &dota2::HistoryRequest::hero(int heroID)
 
 dota2::HistoryRequest &dota2::HistoryRequest::gameMode(GameMode gameMode)
 {
-    query.insert({"game_mode", std::to_string(gameMode)});
+    query.insert({"game_mode", std::to_string(static_cast<int>(gameMode))});
     return *this;
 }
 
