@@ -1,5 +1,20 @@
 #include "dota2api/details.hpp"
+#include "matchdetails_json.hpp"
 #include "gtest/gtest.h"
+#include "json/json.h"
+
+TEST(Details, JSON)
+{
+
+    Json::Value json;
+    Json::Reader().parse(matchdetailsJSON, json);
+    dota2::Details d(json);
+    EXPECT_EQ
+        (
+         1534328999,
+         d.getMatchID()
+        );
+}
 
 TEST(DetailsRequest, filer)
 {

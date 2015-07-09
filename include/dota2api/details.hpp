@@ -11,6 +11,11 @@ namespace dota2
     {
         public:
             Details(const Json::Value &json);
+            MatchID getMatchID() const;
+
+        private:
+
+            MatchID matchID;
     };
 
     class DetailsRequest : public BaseRequest
