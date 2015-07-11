@@ -1,5 +1,7 @@
 language: cpp
 
+sudo: false
+
 compiler:
   - clang
   - gcc
@@ -7,20 +9,16 @@ compiler:
 before_install:
   - pip install --user cpp-coveralls
 
+addons:
+  apt:
+    sources:
+      ubuntu-toolchain-r-test
+    packages:
+      g++-4.8
+
 before_script:
-  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-  - sudo add-apt-repository --yes ppa:h-rayflood/llvm
-  - sudo apt-get update -qq
   - if [ "${CXX}" == "g++"  ]; then
-      sudo apt-get install g++-4.8;
-      sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-4.8 90;
       export CXX="g++-4.8" CC="gcc-4.8";
-    fi
-  - if [ "${CXX}" == "clang++"  ]; then
-      sudo apt-get install clang-3.4 gdb;
-      sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.4 50;
-      sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.4 50;
-      export CXX="clang++-3.4" CC="clang-3.4";
     fi
 
 script:
@@ -31,5 +29,5 @@ script:
 
 after_success:
   - if [ "${CXX}" == "g++-4.8" ]; then
-      cd .. && coveralls --include include/dota2api;
+    cd .. && coveralls --gcov /usr/bin/gcov-4.8 --include include/dota2api;
     fi
