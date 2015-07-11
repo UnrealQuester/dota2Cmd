@@ -14,6 +14,11 @@ TEST(Details, JSON)
          1534328999,
          d.getMatchID()
         );
+    EXPECT_EQ
+        (
+         dota2::Team::DIRE,
+         d.getWinningTeam()
+        );
 }
 
 TEST(DetailsRequest, filer)

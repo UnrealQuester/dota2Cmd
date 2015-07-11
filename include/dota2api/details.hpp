@@ -4,6 +4,7 @@
 #include "baserequest.hpp"
 #include "json/json-forwards.h"
 #include "history.hpp"
+#include "team.hpp"
 
 namespace dota2
 {
@@ -12,10 +13,12 @@ namespace dota2
         public:
             Details(const Json::Value &json);
             MatchID getMatchID() const;
+            Team getWinningTeam() const;
 
         private:
 
             MatchID matchID;
+            Team winningTeam;
     };
 
     class DetailsRequest : public BaseRequest
