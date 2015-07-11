@@ -14,7 +14,6 @@ namespace dota2
 
         protected:
             Query query;
-            BaseRequest() {  };
     };
 }
 
