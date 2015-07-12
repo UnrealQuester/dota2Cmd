@@ -1,6 +1,7 @@
 #include "dota2api/history.hpp"
 #include "gtest/gtest.h"
 #include "json/json.h"
+#include "matchhistory_json.hpp"
 
 TEST(History, getMatchIDs)
 {
@@ -19,6 +20,16 @@ TEST(History, JSON)
         (
          h.getMatchIDs(),
          std::vector<dota2::MatchID>()
+        );
+    Json::Value json;
+    Json::Reader().parse(matchhistoryJSON, json);
+    dota2::History h2((json));
+    EXPECT_EQ
+        (
+         h2.getMatchIDs(),
+         std::vector<dota2::MatchID>(
+             { 1626602285, 1626602193, 1626602124, 1626602013, 1626601927, 1626601922  }
+             )
         );
 }
 
