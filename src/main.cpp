@@ -47,7 +47,15 @@ int handleRequest(const std::string &query, const std::string &key, const dota2:
         return EXIT_FAILURE;
     }
     dota2::APIRequest request(mode->second, key, arguments);
-    std::cout << request.runRequest() << std::endl;
+    try
+    {
+        std::cout << request.runRequest() << std::endl;
+    }
+    catch(const std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+        return 1;
+    }
     return 0;
 }
 

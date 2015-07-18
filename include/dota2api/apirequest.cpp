@@ -50,12 +50,11 @@ Json::Value dota2::APIRequest::runRequest()
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responseBody);
     res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
     if(res != CURLE_OK)
     {
-        curl_easy_cleanup(curl);
         throw std::runtime_error(curl_easy_strerror(res));
     }
-    curl_easy_cleanup(curl);
     Json::Value json;
     Json::Reader().parse(responseBody, json);
     return json;
