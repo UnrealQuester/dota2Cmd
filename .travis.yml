@@ -3,11 +3,7 @@ language: cpp
 sudo: false
 
 compiler:
-  - clang
   - gcc
-
-before_install:
-  - pip install --user cpp-coveralls
 
 env:
   global:
@@ -35,13 +31,4 @@ before_script:
   - git submodule update --init --recursive
 
 script:
-  - if [ "${COVERITY_SCAN_BRANCH}" != 1  ]; then
-      mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug ..;
-      make VERBOSE=1;
-      ./tests/testrunner;
-    fi
-
-after_success:
-  - if [ "${CXX}" == "g++-4.8" && "${COVERITY_SCAN_BRANCH}" != 1 ]; then
-      cd .. && coveralls --gcov /usr/bin/gcov-4.8 --include include/dota2api;
-    fi
+  - true
