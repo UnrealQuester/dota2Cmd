@@ -9,12 +9,24 @@ compiler:
 before_install:
   - pip install --user cpp-coveralls
 
+env:
+  global:
+    - secure: "bbsGy9Q7dxQ7tkusN1M8Wg+McJ+Fd/rBgboGEdmb+eiuvTeuTWD2PW8yghfAFFj9uYpTQzWUPdfu5m4RQFO+pq4g7RwYt6LuBTznUH3TipZ8KF7ohHMCOm63YSP452J4aLEDPeXoNsSOq5eljzE2VSTZGeI8IjEk+6Hz6Ch8jWQR1BcPJ1I4pF0sQjX1fwtBclFA4OipVUm4JWU9KxyvT5ovfzK0xuFovG2u3kf062/m8X1zs8JscgiWDr97mWbWqc2DdEs/wBSL7oJk7yZOqepAtWRAh0OkIICt8txRh6ZLumTanyUjzY/1m4RVDY/TKV06fiaiSrH1P25CLe3oH54vtdgylYSD2siBXEOabNSOJul3zEyTrcJrzpOMY9FyheuNQd/nJWy7QZqbfCSUCO6MHxSTAdpJKwHeU5D+pq8Q9uc78xPe6ayW7gyiQGPC3oCL7o2SAJAgp9UBLRjxBOImhpbx+J2OYyRA+xp612uape+5AyueIQJs9g5HFl3TIMCPd1c0umXP7pMu5JU1ku+e95F3w34QZHpiesGqORue6yg6uwh4rxxfj3XBpbWMycrVxwnj0Nf4yUoW6/Qe9uZF9GsZQvy9pJHcTQqqcYjNUOHuuq+89o+ImhcRsZOy+rCunfHJSfh5NvlswcpI/Lg+x30yTm11urvII3mR/B4="
+
 addons:
   apt:
     sources:
       ubuntu-toolchain-r-test
     packages:
       g++-4.8
+  coverity_scan:
+    project:
+      name: "UnrealQuester/dota2Cmd"
+      description: "<Your project description here>"
+    notification_email: a.buddenbrock@ish.de
+    build_command_prepend: "cmake ."
+    build_command:   "make"
+    branch_pattern: coverity_scan
 
 before_script:
   - if [ "${CXX}" == "g++"  ]; then
