@@ -14,14 +14,8 @@ dota2::Details::Details(const Json::Value &json)
     matchID = result["match_id"].asInt();
     startTime = timePoint(result["start_time"].asInt64());
     firstBloodTime = timePoint(result["first_blood_time"].asInt64());
-    if(result["radiant_win"].asBool())
-    {
-        winningTeam = Team::RADIANT;
-    }
-    else
-    {
-        winningTeam = Team::DIRE;
-    }
+    winningTeam = result["radiant_win"].asBool() ?
+        Team::RADIANT : Team::DIRE;
 }
 
 dota2::MatchID dota2::Details::getMatchID() const
