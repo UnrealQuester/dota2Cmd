@@ -9,10 +9,12 @@ dota2::DetailsRequest &dota2::DetailsRequest::id(MatchID id)
 
 dota2::Details::Details(const Json::Value &json)
 {
-    matchID = json["result"]["match_id"].asInt();
-    startTime = timePoint(json["result"]["start_time"].asInt64());
-    firstBloodTime = timePoint(json["result"]["first_blood_time"].asInt64());
-    if(json["result"]["radiant_win"].asBool())
+    const auto& result = json["result"];
+
+    matchID = result["match_id"].asInt();
+    startTime = timePoint(result["start_time"].asInt64());
+    firstBloodTime = timePoint(result["first_blood_time"].asInt64());
+    if(result["radiant_win"].asBool())
     {
         winningTeam = Team::RADIANT;
     }
