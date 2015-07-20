@@ -19,6 +19,16 @@ TEST(Details, JSON)
          dota2::Team::DIRE,
          d.getWinningTeam()
         );
+    EXPECT_EQ
+        (
+         328,
+         d.getFirstBloodTime().count()
+        );
+    EXPECT_EQ
+        (
+         1433676675,
+         d.getStartTime().count()
+        );
 }
 
 TEST(DetailsRequest, filer)
