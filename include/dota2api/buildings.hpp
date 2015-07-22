@@ -2,6 +2,7 @@
 #define BUILDINGS_HPP_Q0KHXQGJ
 
 #include <bitset>
+#include <stdint.h>
 
 namespace dota2
 {
