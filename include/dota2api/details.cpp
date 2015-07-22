@@ -16,6 +16,14 @@ dota2::Details::Details(const Json::Value &json)
     firstBloodTime = timePoint(result["first_blood_time"].asInt64());
     winningTeam = result["radiant_win"].asBool() ?
         Team::RADIANT : Team::DIRE;
+    buildingStatusDire.set(
+            result["barracks_status_dire"].asUInt(),
+            result["tower_status_dire"].asUInt()
+            );
+    buildingStatusRadiant.set(
+            result["barracks_status_radiant"].asUInt(),
+            result["tower_status_radiant"].asUInt()
+            );
 }
 
 dota2::MatchID dota2::Details::getMatchID() const
@@ -36,4 +44,13 @@ dota2::Details::timePoint dota2::Details::getStartTime() const
 dota2::Details::timePoint dota2::Details::getFirstBloodTime() const
 {
     return firstBloodTime;
+}
+const dota2::BuildingStatus& dota2::Details::getBuildingsStatusDire() const
+{
+    return buildingStatusDire;
+}
+
+const dota2::BuildingStatus& dota2::Details::getBuildingsStatusRadiant() const
+{
+    return buildingStatusRadiant;
 }

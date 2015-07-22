@@ -29,6 +29,16 @@ TEST(Details, JSON)
          1433676675,
          d.getStartTime().count()
         );
+    EXPECT_EQ
+        (
+         true,
+         d.getBuildingsStatusDire().getStatus().all()
+        );
+    EXPECT_EQ
+        (
+         true,
+         d.getBuildingsStatusRadiant().getStatus().all()
+        );
 }
 
 TEST(DetailsRequest, filer)

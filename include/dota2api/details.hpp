@@ -5,6 +5,7 @@
 #include "json/json-forwards.h"
 #include "history.hpp"
 #include "team.hpp"
+#include "buildings.hpp"
 #include <chrono>
 
 namespace dota2
@@ -19,6 +20,8 @@ namespace dota2
             Team getWinningTeam() const;
             timePoint getStartTime() const;
             timePoint getFirstBloodTime() const;
+            const BuildingStatus& getBuildingsStatusDire() const;
+            const BuildingStatus& getBuildingsStatusRadiant() const;
 
         private:
 
@@ -26,6 +29,8 @@ namespace dota2
             Team winningTeam;
             timePoint startTime;
             timePoint firstBloodTime;
+            BuildingStatus buildingStatusDire;
+            BuildingStatus buildingStatusRadiant;
     };
 
     class DetailsRequest : public BaseRequest
