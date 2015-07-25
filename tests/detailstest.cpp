@@ -19,6 +19,31 @@ TEST(Details, JSON)
          dota2::Team::DIRE,
          d.getWinningTeam()
         );
+    EXPECT_EQ
+        (
+         328,
+         d.getFirstBloodTime().count()
+        );
+    EXPECT_EQ
+        (
+         1433676675,
+         d.getStartTime().count()
+        );
+    EXPECT_EQ
+        (
+         true,
+         d.getBuildingsStatusDire().getStatus().all()
+        );
+    EXPECT_EQ
+        (
+         true,
+         d.getBuildingsStatusRadiant().getStatus().all()
+        );
+    EXPECT_EQ
+        (
+         dota2::GameMode::Solo_Mid,
+         d.getGameMode()
+        );
 }
 
 TEST(DetailsRequest, filer)

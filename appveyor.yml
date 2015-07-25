@@ -12,7 +12,6 @@ build_script:
   - cmake --build Build
 
 install:
-  - ps: gem install coveralls-lcov
   - call .appveyor\build_curl.bat
 
 test_script:

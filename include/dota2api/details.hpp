@@ -5,20 +5,34 @@
 #include "json/json-forwards.h"
 #include "history.hpp"
 #include "team.hpp"
+#include "buildings.hpp"
+#include <chrono>
 
 namespace dota2
 {
     class Details
     {
         public:
+            using timePoint = std::chrono::seconds;
+
             Details(const Json::Value &json);
             MatchID getMatchID() const;
             Team getWinningTeam() const;
+            timePoint getStartTime() const;
+            timePoint getFirstBloodTime() const;
+            const BuildingStatus& getBuildingsStatusDire() const;
+            const BuildingStatus& getBuildingsStatusRadiant() const;
+            GameMode getGameMode() const;
 
         private:
 
             MatchID matchID;
             Team winningTeam;
+            timePoint startTime;
+            timePoint firstBloodTime;
+            BuildingStatus buildingStatusDire;
+            BuildingStatus buildingStatusRadiant;
+            GameMode gameMode;
     };
 
     class DetailsRequest : public BaseRequest
