@@ -1,6 +1,9 @@
 #ifndef GAMEMODE_HPP_G2COHEZY
 #define GAMEMODE_HPP_G2COHEZY
 
+#include <string>
+#include <map>
+
 namespace dota2
 {
     /*!
@@ -31,5 +34,6 @@ namespace dota2
         Solo_Mid,
     };
 
+    GameMode gameModeFromInt(int mode);
 }
 #endif /* end of include guard: GAMEMODE_HPP_G2COHEZY */

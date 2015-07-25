@@ -24,6 +24,7 @@ dota2::Details::Details(const Json::Value &json)
             result["barracks_status_radiant"].asUInt(),
             result["tower_status_radiant"].asUInt()
             );
+    gameMode = gameModeFromInt(result["game_mode"].asInt());
 }
 
 dota2::MatchID dota2::Details::getMatchID() const
@@ -53,4 +54,9 @@ const dota2::BuildingStatus& dota2::Details::getBuildingsStatusDire() const
 const dota2::BuildingStatus& dota2::Details::getBuildingsStatusRadiant() const
 {
     return buildingStatusRadiant;
+}
+
+dota2::GameMode dota2::Details::getGameMode() const
+{
+    return gameMode;
 }

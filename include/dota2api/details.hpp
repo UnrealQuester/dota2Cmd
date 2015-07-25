@@ -22,6 +22,7 @@ namespace dota2
             timePoint getFirstBloodTime() const;
             const BuildingStatus& getBuildingsStatusDire() const;
             const BuildingStatus& getBuildingsStatusRadiant() const;
+            GameMode getGameMode() const;
 
         private:
 
@@ -31,6 +32,7 @@ namespace dota2
             timePoint firstBloodTime;
             BuildingStatus buildingStatusDire;
             BuildingStatus buildingStatusRadiant;
+            GameMode gameMode;
     };
 
     class DetailsRequest : public BaseRequest

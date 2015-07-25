@@ -39,6 +39,11 @@ TEST(Details, JSON)
          true,
          d.getBuildingsStatusRadiant().getStatus().all()
         );
+    EXPECT_EQ
+        (
+         dota2::GameMode::Solo_Mid,
+         d.getGameMode()
+        );
 }
 
 TEST(DetailsRequest, filer)
