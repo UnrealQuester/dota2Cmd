@@ -44,6 +44,11 @@ TEST(Details, JSON)
          dota2::GameMode::Solo_Mid,
          d.getGameMode()
         );
+    EXPECT_EQ
+        (
+         511,
+         d.getDuration().count()
+        );
 }
 
 TEST(DetailsRequest, filer)

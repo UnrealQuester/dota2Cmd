@@ -20,6 +20,7 @@ namespace dota2
             Team getWinningTeam() const;
             timePoint getStartTime() const;
             timePoint getFirstBloodTime() const;
+            timePoint getDuration() const;
             const BuildingStatus& getBuildingsStatusDire() const;
             const BuildingStatus& getBuildingsStatusRadiant() const;
             GameMode getGameMode() const;
@@ -30,6 +31,7 @@ namespace dota2
             Team winningTeam;
             timePoint startTime;
             timePoint firstBloodTime;
+            timePoint duration;
             BuildingStatus buildingStatusDire;
             BuildingStatus buildingStatusRadiant;
             GameMode gameMode;

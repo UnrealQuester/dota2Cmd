@@ -14,6 +14,7 @@ dota2::Details::Details(const Json::Value &json)
     matchID = result["match_id"].asInt();
     startTime = timePoint(result["start_time"].asInt64());
     firstBloodTime = timePoint(result["first_blood_time"].asInt64());
+    duration = timePoint(result["duration"].asInt64());
     winningTeam = result["radiant_win"].asBool() ?
         Team::RADIANT : Team::DIRE;
     buildingStatusDire.set(
@@ -59,4 +60,9 @@ const dota2::BuildingStatus& dota2::Details::getBuildingsStatusRadiant() const
 dota2::GameMode dota2::Details::getGameMode() const
 {
     return gameMode;
+}
+
+dota2::Details::timePoint dota2::Details::getDuration() const
+{
+    return duration;
 }
