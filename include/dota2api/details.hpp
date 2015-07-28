@@ -15,6 +15,7 @@ namespace dota2
         public:
             using timePoint = std::chrono::seconds;
 
+            Details() = default;
             Details(const Json::Value &json);
             MatchID getMatchID() const;
             Team getWinningTeam() const;
@@ -27,14 +28,14 @@ namespace dota2
 
         private:
 
-            MatchID matchID;
-            Team winningTeam;
-            timePoint startTime;
-            timePoint firstBloodTime;
-            timePoint duration;
+            MatchID matchID = 0;
+            Team winningTeam = Team::DIRE;
+            timePoint startTime = timePoint(0);
+            timePoint firstBloodTime = timePoint(0);
+            timePoint duration = timePoint(0);
             BuildingStatus buildingStatusDire;
             BuildingStatus buildingStatusRadiant;
-            GameMode gameMode;
+            GameMode gameMode = GameMode::Unknwown;
     };
 
     class DetailsRequest : public BaseRequest
