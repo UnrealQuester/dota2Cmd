@@ -89,6 +89,26 @@ TEST_F(DetailsTest, getDuration)
         );
 }
 
+TEST_F(DetailsTest, getDireTeam)
+{
+    const auto &team = d.getDireTeam();
+    EXPECT_EQ
+        (
+         1,
+         team.size()
+        );
+}
+
+TEST_F(DetailsTest, getRadiantTeam)
+{
+    const auto &team = d.getRadiantTeam();
+    EXPECT_EQ
+        (
+         1,
+         team.size()
+        );
+}
+
 TEST(DetailsRequest, filer)
 {
     dota2::DetailsRequest request;

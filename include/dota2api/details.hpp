@@ -6,7 +6,10 @@
 #include "history.hpp"
 #include "team.hpp"
 #include "buildings.hpp"
+#include "player.hpp"
 #include <chrono>
+#include <vector>
+
 
 namespace dota2
 {
@@ -25,6 +28,8 @@ namespace dota2
             const BuildingStatus& getBuildingsStatusDire() const;
             const BuildingStatus& getBuildingsStatusRadiant() const;
             GameMode getGameMode() const;
+            const std::vector<Player> &getDireTeam() const;
+            const std::vector<Player> &getRadiantTeam() const;
 
         private:
 
@@ -36,6 +41,8 @@ namespace dota2
             BuildingStatus buildingStatusDire;
             BuildingStatus buildingStatusRadiant;
             GameMode gameMode = GameMode::Unknwown;
+            std::vector<Player> direTeam;
+            std::vector<Player> radiantTeam;
     };
 
     class DetailsRequest : public BaseRequest

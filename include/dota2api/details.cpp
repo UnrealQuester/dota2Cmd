@@ -26,6 +26,12 @@ dota2::Details::Details(const Json::Value &json)
             result["tower_status_radiant"].asUInt()
             );
     gameMode = gameModeFromInt(result["game_mode"].asInt());
+    for(const auto& playerJSON : result["players"]) {
+        Player player;
+        auto &team = (playerJSON["player_slot"].asUInt() & 0x80) ?
+            direTeam : radiantTeam;
+        team.emplace_back(std::move(player));
+    }
 }
 
 dota2::MatchID dota2::Details::getMatchID() const
@@ -65,4 +71,14 @@ dota2::GameMode dota2::Details::getGameMode() const
 dota2::Details::timePoint dota2::Details::getDuration() const
 {
     return duration;
+}
+
+const std::vector<dota2::Player> &dota2::Details::getDireTeam() const
+{
+    return direTeam;
+}
+
+const std::vector<dota2::Player> &dota2::Details::getRadiantTeam() const
+{
+    return radiantTeam;
 }
