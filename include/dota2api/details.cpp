@@ -27,10 +27,9 @@ dota2::Details::Details(const Json::Value &json)
             );
     gameMode = gameModeFromInt(result["game_mode"].asInt());
     for(const auto& playerJSON : result["players"]) {
-        Player player;
         auto &team = (playerJSON["player_slot"].asUInt() & 0x80) ?
             direTeam : radiantTeam;
-        team.emplace_back(std::move(player));
+        team.emplace_back(playerJSON);
     }
 }
 
