@@ -6,7 +6,10 @@
 #include "history.hpp"
 #include "team.hpp"
 #include "buildings.hpp"
+#include "player.hpp"
 #include <chrono>
+#include <vector>
+
 
 namespace dota2
 {
@@ -15,24 +18,31 @@ namespace dota2
         public:
             using timePoint = std::chrono::seconds;
 
+            Details() = default;
             Details(const Json::Value &json);
             MatchID getMatchID() const;
             Team getWinningTeam() const;
             timePoint getStartTime() const;
             timePoint getFirstBloodTime() const;
+            timePoint getDuration() const;
             const BuildingStatus& getBuildingsStatusDire() const;
             const BuildingStatus& getBuildingsStatusRadiant() const;
             GameMode getGameMode() const;
+            const std::vector<Player> &getDireTeam() const;
+            const std::vector<Player> &getRadiantTeam() const;
 
         private:
 
-            MatchID matchID;
-            Team winningTeam;
-            timePoint startTime;
-            timePoint firstBloodTime;
+            MatchID matchID = 0;
+            Team winningTeam = Team::DIRE;
+            timePoint startTime = timePoint(0);
+            timePoint firstBloodTime = timePoint(0);
+            timePoint duration = timePoint(0);
             BuildingStatus buildingStatusDire;
             BuildingStatus buildingStatusRadiant;
-            GameMode gameMode;
+            GameMode gameMode = GameMode::Unknwown;
+            std::vector<Player> direTeam;
+            std::vector<Player> radiantTeam;
     };
 
     class DetailsRequest : public BaseRequest

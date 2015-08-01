@@ -14,6 +14,7 @@ dota2::Details::Details(const Json::Value &json)
     matchID = result["match_id"].asInt();
     startTime = timePoint(result["start_time"].asInt64());
     firstBloodTime = timePoint(result["first_blood_time"].asInt64());
+    duration = timePoint(result["duration"].asInt64());
     winningTeam = result["radiant_win"].asBool() ?
         Team::RADIANT : Team::DIRE;
     buildingStatusDire.set(
@@ -25,6 +26,11 @@ dota2::Details::Details(const Json::Value &json)
             result["tower_status_radiant"].asUInt()
             );
     gameMode = gameModeFromInt(result["game_mode"].asInt());
+    for(const auto& playerJSON : result["players"]) {
+        auto &team = (playerJSON["player_slot"].asUInt() & 0x80) ?
+            direTeam : radiantTeam;
+        team.emplace_back(playerJSON);
+    }
 }
 
 dota2::MatchID dota2::Details::getMatchID() const
@@ -59,4 +65,19 @@ const dota2::BuildingStatus& dota2::Details::getBuildingsStatusRadiant() const
 dota2::GameMode dota2::Details::getGameMode() const
 {
     return gameMode;
+}
+
+dota2::Details::timePoint dota2::Details::getDuration() const
+{
+    return duration;
+}
+
+const std::vector<dota2::Player> &dota2::Details::getDireTeam() const
+{
+    return direTeam;
+}
+
+const std::vector<dota2::Player> &dota2::Details::getRadiantTeam() const
+{
+    return radiantTeam;
 }
