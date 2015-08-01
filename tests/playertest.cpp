@@ -32,3 +32,45 @@ TEST_F(PlayerTest, getAccountID)
          player2.getAccountID()
         );
 }
+
+TEST_F(PlayerTest, getKills)
+{
+    EXPECT_EQ
+        (
+         0,
+         player1.getKills()
+        );
+    EXPECT_EQ
+        (
+         2,
+         player2.getKills()
+        );
+}
+
+TEST_F(PlayerTest, getAssists)
+{
+    EXPECT_EQ
+        (
+         1,
+         player1.getAssists()
+        );
+    EXPECT_EQ
+        (
+         0,
+         player2.getAssists()
+        );
+}
+
+TEST_F(PlayerTest, getDeaths)
+{
+    EXPECT_EQ
+        (
+         2,
+         player1.getDeaths()
+        );
+    EXPECT_EQ
+        (
+         0,
+         player2.getDeaths()
+        );
+}

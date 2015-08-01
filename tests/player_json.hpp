@@ -47,7 +47,7 @@ std::string playerJSON = R"(
                     }
                 ],
                 "account_id" : 121675089,
-                "assists" : 0,
+                "assists" : 1,
                 "deaths" : 2,
                 "denies" : 2,
                 "gold" : 512,
