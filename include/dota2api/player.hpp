@@ -12,11 +12,11 @@ namespace dota2
         public:
             Player() = default;
             Player(const Json::Value &);
-            uint32_t getAccountID();
-            unsigned int getKills();
-            unsigned int getDeaths();
-            unsigned int getAssists();
-            unsigned int getNetWorth();
+            uint32_t getAccountID() const;
+            unsigned int getKills() const;
+            unsigned int getDeaths() const;
+            unsigned int getAssists() const;
+            unsigned int getNetWorth() const;
 
         private:
             uint32_t accountID = 0;
