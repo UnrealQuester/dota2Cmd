@@ -16,12 +16,14 @@ namespace dota2
             unsigned int getKills();
             unsigned int getDeaths();
             unsigned int getAssists();
+            unsigned int getNetWorth();
 
         private:
             uint32_t accountID = 0;
             unsigned int kills = 0;
             unsigned int deaths = 0;
             unsigned int assists = 0;
+            unsigned int netWorth = 0;
     };
 }
 

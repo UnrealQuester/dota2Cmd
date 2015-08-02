@@ -7,6 +7,7 @@ dota2::Player::Player(const Json::Value &json)
     kills = json["kills"].asUInt();
     deaths = json["deaths"].asUInt();
     assists = json["assists"].asUInt();
+    netWorth = json["gold"].asUInt() + json["gold_spent"].asUInt();
 }
 
 uint32_t dota2::Player::getAccountID()
@@ -27,4 +28,9 @@ unsigned int dota2::Player::getDeaths()
 unsigned int dota2::Player::getAssists()
 {
     return assists;
+}
+
+unsigned int dota2::Player::getNetWorth()
+{
+    return netWorth;
 }

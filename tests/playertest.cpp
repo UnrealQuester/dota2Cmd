@@ -74,3 +74,17 @@ TEST_F(PlayerTest, getDeaths)
          player2.getDeaths()
         );
 }
+
+TEST_F(PlayerTest, getNetWorth)
+{
+    EXPECT_EQ
+        (
+         2247,
+         player1.getNetWorth()
+        );
+    EXPECT_EQ
+        (
+         3731,
+         player2.getNetWorth()
+        );
+}
