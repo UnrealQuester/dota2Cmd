@@ -8,6 +8,8 @@ dota2::Player::Player(const Json::Value &json)
     deaths = json["deaths"].asUInt();
     assists = json["assists"].asUInt();
     netWorth = json["gold"].asUInt() + json["gold_spent"].asUInt();
+    experiencePerMinute = json["xp_per_min"].asUInt();
+    goldPerMinute = json["gold_per_min"].asUInt();
 }
 
 uint32_t dota2::Player::getAccountID() const
@@ -33,4 +35,14 @@ unsigned int dota2::Player::getAssists() const
 unsigned int dota2::Player::getNetWorth() const
 {
     return netWorth;
+}
+
+unsigned int dota2::Player::getExperiencePerMinute() const
+{
+    return experiencePerMinute;
+}
+
+unsigned int dota2::Player::getGoldperMinute() const
+{
+    return goldPerMinute;
 }

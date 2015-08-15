@@ -88,3 +88,31 @@ TEST_F(PlayerTest, getNetWorth)
          player2.getNetWorth()
         );
 }
+
+TEST_F(PlayerTest, getExperiencePerMinute)
+{
+    EXPECT_EQ
+        (
+         360,
+         player1.getExperiencePerMinute()
+        );
+    EXPECT_EQ
+        (
+         445,
+         player2.getExperiencePerMinute()
+        );
+}
+
+TEST_F(PlayerTest, getGoldperMinute)
+{
+    EXPECT_EQ
+        (
+         232,
+         player1.getGoldperMinute()
+        );
+    EXPECT_EQ
+        (
+         340,
+         player2.getGoldperMinute()
+        );
+}

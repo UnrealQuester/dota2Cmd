@@ -17,6 +17,8 @@ namespace dota2
             unsigned int getDeaths() const;
             unsigned int getAssists() const;
             unsigned int getNetWorth() const;
+            unsigned int getExperiencePerMinute() const;
+            unsigned int getGoldperMinute() const;
 
         private:
             uint32_t accountID = 0;
@@ -24,6 +26,8 @@ namespace dota2
             unsigned int deaths = 0;
             unsigned int assists = 0;
             unsigned int netWorth = 0;
+            unsigned int experiencePerMinute = 0;
+            unsigned int goldPerMinute = 0;
     };
 }
 
