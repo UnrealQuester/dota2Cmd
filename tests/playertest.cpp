@@ -103,17 +103,17 @@ TEST_F(PlayerTest, getExperiencePerMinute)
         );
 }
 
-TEST_F(PlayerTest, getGoldperMinute)
+TEST_F(PlayerTest, getGoldPerMinute)
 {
     EXPECT_EQ
         (
          232,
-         player1.getGoldperMinute()
+         player1.getGoldPerMinute()
         );
     EXPECT_EQ
         (
          340,
-         player2.getGoldperMinute()
+         player2.getGoldPerMinute()
         );
 }
 

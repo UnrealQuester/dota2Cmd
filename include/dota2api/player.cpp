@@ -44,7 +44,7 @@ unsigned int dota2::Player::getExperiencePerMinute() const
     return experiencePerMinute;
 }
 
-unsigned int dota2::Player::getGoldperMinute() const
+unsigned int dota2::Player::getGoldPerMinute() const
 {
     return goldPerMinute;
 }

@@ -18,7 +18,7 @@ namespace dota2
             unsigned int getAssists() const;
             unsigned int getNetWorth() const;
             unsigned int getExperiencePerMinute() const;
-            unsigned int getGoldperMinute() const;
+            unsigned int getGoldPerMinute() const;
             unsigned int getDenies() const;
             unsigned int getLastHits() const;
 
