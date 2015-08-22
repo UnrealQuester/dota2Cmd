@@ -19,6 +19,8 @@ namespace dota2
             unsigned int getNetWorth() const;
             unsigned int getExperiencePerMinute() const;
             unsigned int getGoldperMinute() const;
+            unsigned int getDenies() const;
+            unsigned int getLastHits() const;
 
         private:
             uint32_t accountID = 0;
@@ -28,6 +30,8 @@ namespace dota2
             unsigned int netWorth = 0;
             unsigned int experiencePerMinute = 0;
             unsigned int goldPerMinute = 0;
+            unsigned int lastHits = 0;
+            unsigned int denies = 0;
     };
 }
 

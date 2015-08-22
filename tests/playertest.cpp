@@ -116,3 +116,31 @@ TEST_F(PlayerTest, getGoldperMinute)
          player2.getGoldperMinute()
         );
 }
+
+TEST_F(PlayerTest, getDenies)
+{
+    EXPECT_EQ
+        (
+         2,
+         player1.getDenies()
+        );
+    EXPECT_EQ
+        (
+         0,
+         player2.getDenies()
+        );
+}
+
+TEST_F(PlayerTest, getLastHits)
+{
+    EXPECT_EQ
+        (
+         13,
+         player1.getLastHits()
+        );
+    EXPECT_EQ
+        (
+         25,
+         player2.getLastHits()
+        );
+}
