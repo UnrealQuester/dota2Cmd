@@ -12,6 +12,7 @@ dota2::Player::Player(const Json::Value &json)
     goldPerMinute = json["gold_per_min"].asUInt();
     denies = json["denies"].asUInt();
     lastHits = json["last_hits"].asUInt();
+    hero = heroFromInt(json["hero_id"].asInt());
 }
 
 uint32_t dota2::Player::getAccountID() const
@@ -57,4 +58,9 @@ unsigned int dota2::Player::getDenies() const
 unsigned int dota2::Player::getLastHits() const
 {
     return lastHits;
+}
+
+dota2::Hero dota2::Player::getHero() const
+{
+    return hero;
 }

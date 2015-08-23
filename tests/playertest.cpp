@@ -144,3 +144,17 @@ TEST_F(PlayerTest, getLastHits)
          player2.getLastHits()
         );
 }
+
+TEST_F(PlayerTest, getHero)
+{
+    EXPECT_EQ
+        (
+         dota2::Hero::Pudge,
+         player1.getHero()
+        );
+    EXPECT_EQ
+        (
+         dota2::Hero::Lone_Druid,
+         player2.getHero()
+        );
+}
