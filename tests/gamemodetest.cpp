@@ -1,4 +1,4 @@
-#include "dota2api/gamemode.cpp"
+#include "dota2api/gamemode.hpp"
 #include "gtest/gtest.h"
 
 TEST(GameMode, gameModeFromInt)
