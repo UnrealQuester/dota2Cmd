@@ -158,3 +158,17 @@ TEST_F(PlayerTest, getHero)
          player2.getHero()
         );
 }
+
+TEST_F(PlayerTest, getLevel)
+{
+    EXPECT_EQ
+        (
+         7,
+         player1.getLevel()
+        );
+    EXPECT_EQ
+        (
+         8,
+         player2.getLevel()
+        );
+}

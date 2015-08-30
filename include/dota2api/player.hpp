@@ -22,6 +22,7 @@ namespace dota2
             unsigned int getGoldPerMinute() const;
             unsigned int getDenies() const;
             unsigned int getLastHits() const;
+            unsigned int getLevel() const;
             Hero getHero() const;
 
         private:
@@ -34,6 +35,7 @@ namespace dota2
             unsigned int goldPerMinute = 0;
             unsigned int lastHits = 0;
             unsigned int denies = 0;
+            unsigned int level = 0;
             Hero hero = Hero::Unknown;
     };
 }

@@ -13,6 +13,7 @@ dota2::Player::Player(const Json::Value &json)
     denies = json["denies"].asUInt();
     lastHits = json["last_hits"].asUInt();
     hero = heroFromInt(json["hero_id"].asInt());
+    level = json["level"].asUInt();
 }
 
 uint32_t dota2::Player::getAccountID() const
@@ -63,4 +64,9 @@ unsigned int dota2::Player::getLastHits() const
 dota2::Hero dota2::Player::getHero() const
 {
     return hero;
+}
+
+unsigned int dota2::Player::getLevel() const
+{
+    return level;
 }
