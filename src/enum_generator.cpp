@@ -19,6 +19,15 @@ std::string toLower(std::string str)
     return str;
 }
 
+std::string toEnumName(std::string str)
+{
+    auto replace = [](char c) { return c == ' ' || c == '-'; };
+    std::replace_if(str.begin(), str.end(), replace, '_');
+    auto invalid = [](char c) {return c != '_' && !isalpha(c);};
+    str.erase(std::remove_if(str.begin(), str.end(), invalid), str.end());
+    return str;
+}
+
 void print(std::initializer_list<std::string> const& args)
 {
     for(const auto &arg : args)
@@ -58,7 +67,7 @@ void generateEnum(Json::Value json, std::string name, std::string displayName)
 {
     std::map<int, std::string> enumItems;
     for(const auto& value : json["result"][name])
-        enumItems[value["id"].asInt()] = value["localized_name"].asString();
+        enumItems[value["id"].asInt()] = toEnumName(value["localized_name"].asString());
     print("#ifndef ", toUpper(name), "_HPP_GENERATED");
     print("#define ", toUpper(name), "_HPP_GENERATED");
     print();
