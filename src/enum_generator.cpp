@@ -68,6 +68,7 @@ void generateEnum(Json::Value json, std::string name, std::string displayName)
     std::map<int, std::string> enumItems;
     for(const auto& value : json["result"][name])
         enumItems[value["id"].asInt()] = toEnumName(value["localized_name"].asString());
+    enumItems[0] = "Unknown";
     print("#ifndef ", toUpper(name), "_HPP_GENERATED");
     print("#define ", toUpper(name), "_HPP_GENERATED");
     print();
@@ -77,7 +78,6 @@ void generateEnum(Json::Value json, std::string name, std::string displayName)
     print("{");
     print(indent1, "enum class ", displayName);
     print(indent1, "{");
-    print(indent2, "Unknown = 0,");
     for(const auto& value : enumItems)
     {
         print(indent2, value.second, " = ", value.first, ",");
