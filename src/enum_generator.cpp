@@ -48,9 +48,9 @@ void generateConversionInt(std::string name, std::string displayName)
     print(indent1, "inline ", displayName, " ", variableName, "FromInt(int ", variableName, ")");
     print(indent1, "{");
     print(indent2, "const auto iter = ", name, ".find(", variableName, ");");
-    print(indent2, "if iter == ", name, ".end())");
+    print(indent2, "if(iter == ", name, ".end())");
     print(indent3, "return ", displayName, "::Unknown;");
-    print(indent2, "return iter->second");
+    print(indent2, "return iter->second;");
     print(indent1, "}");
 }
 
