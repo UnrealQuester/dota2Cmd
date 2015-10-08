@@ -87,7 +87,7 @@ void generateEnum(Json::Value json, std::string name, std::string displayName)
     print(indent1, "const std::map<int, ", displayName, "> ", name, "({");
     for(const auto& value : enumItems)
     {
-        print(indent2, "{", value.first, ", ", displayName, "::", value.second, "},");
+        print(indent2, "{", "(int)", displayName, "::", value.second, ",", displayName, "::", value.second, "},");
     }
     print(indent1, "});");
     generateConversionInt(name, displayName);
