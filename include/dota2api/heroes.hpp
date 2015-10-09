@@ -1,19 +1,12 @@
-#ifndef HEROES_HPP_HF3BYUB7
-#define HEROES_HPP_HF3BYUB7
+#ifndef HEROES_HPP_GENERATED
+#define HEROES_HPP_GENERATED
 
 #include <map>
 
 namespace dota2
 {
-    /*!
-    * Enum containing all dota2 heroes.
-    *
-    * This enum macro is using better-enums by aantron.
-    * As it used nested macros to do it's magic, the macimum number
-    * of items is limited to 127 because of limitations in VC++.
-    * The current number of items is 110.
-    */
-    enum class Hero {
+    enum class Hero
+    {
         Unknown = 0,
         Anti_Mage = 1,
         Axe = 2,
@@ -24,8 +17,8 @@ namespace dota2
         Earthshaker = 7,
         Juggernaut = 8,
         Mirana = 9,
-        Shadow_Fiend = 11,
         Morphling = 10,
+        Shadow_Fiend = 11,
         Phantom_Lancer = 12,
         Puck = 13,
         Pudge = 14,
@@ -39,12 +32,12 @@ namespace dota2
         Zeus = 22,
         Kunkka = 23,
         Lina = 25,
-        Lich = 31,
         Lion = 26,
         Shadow_Shaman = 27,
         Slardar = 28,
         Tidehunter = 29,
         Witch_Doctor = 30,
+        Lich = 31,
         Riki = 32,
         Enigma = 33,
         Tinker = 34,
@@ -81,8 +74,8 @@ namespace dota2
         Batrider = 65,
         Chen = 66,
         Spectre = 67,
-        Doom = 69,
         Ancient_Apparition = 68,
+        Doom = 69,
         Ursa = 70,
         Spirit_Breaker = 71,
         Gyrocopter = 72,
@@ -118,12 +111,12 @@ namespace dota2
         Abaddon = 102,
         Elder_Titan = 103,
         Legion_Commander = 104,
+        Techies = 105,
         Ember_Spirit = 106,
         Earth_Spirit = 107,
         Terrorblade = 109,
         Phoenix = 110,
         Oracle = 111,
-        Techies = 105,
         Winter_Wyvern = 112,
     };
 
@@ -138,8 +131,8 @@ namespace dota2
         {(int)Hero::Earthshaker,Hero::Earthshaker},
         {(int)Hero::Juggernaut,Hero::Juggernaut},
         {(int)Hero::Mirana,Hero::Mirana},
-        {(int)Hero::Shadow_Fiend,Hero::Shadow_Fiend},
         {(int)Hero::Morphling,Hero::Morphling},
+        {(int)Hero::Shadow_Fiend,Hero::Shadow_Fiend},
         {(int)Hero::Phantom_Lancer,Hero::Phantom_Lancer},
         {(int)Hero::Puck,Hero::Puck},
         {(int)Hero::Pudge,Hero::Pudge},
@@ -153,12 +146,12 @@ namespace dota2
         {(int)Hero::Zeus,Hero::Zeus},
         {(int)Hero::Kunkka,Hero::Kunkka},
         {(int)Hero::Lina,Hero::Lina},
-        {(int)Hero::Lich,Hero::Lich},
         {(int)Hero::Lion,Hero::Lion},
         {(int)Hero::Shadow_Shaman,Hero::Shadow_Shaman},
         {(int)Hero::Slardar,Hero::Slardar},
         {(int)Hero::Tidehunter,Hero::Tidehunter},
         {(int)Hero::Witch_Doctor,Hero::Witch_Doctor},
+        {(int)Hero::Lich,Hero::Lich},
         {(int)Hero::Riki,Hero::Riki},
         {(int)Hero::Enigma,Hero::Enigma},
         {(int)Hero::Tinker,Hero::Tinker},
@@ -195,8 +188,8 @@ namespace dota2
         {(int)Hero::Batrider,Hero::Batrider},
         {(int)Hero::Chen,Hero::Chen},
         {(int)Hero::Spectre,Hero::Spectre},
-        {(int)Hero::Doom,Hero::Doom},
         {(int)Hero::Ancient_Apparition,Hero::Ancient_Apparition},
+        {(int)Hero::Doom,Hero::Doom},
         {(int)Hero::Ursa,Hero::Ursa},
         {(int)Hero::Spirit_Breaker,Hero::Spirit_Breaker},
         {(int)Hero::Gyrocopter,Hero::Gyrocopter},
@@ -232,14 +225,20 @@ namespace dota2
         {(int)Hero::Abaddon,Hero::Abaddon},
         {(int)Hero::Elder_Titan,Hero::Elder_Titan},
         {(int)Hero::Legion_Commander,Hero::Legion_Commander},
+        {(int)Hero::Techies,Hero::Techies},
         {(int)Hero::Ember_Spirit,Hero::Ember_Spirit},
         {(int)Hero::Earth_Spirit,Hero::Earth_Spirit},
         {(int)Hero::Terrorblade,Hero::Terrorblade},
         {(int)Hero::Phoenix,Hero::Phoenix},
         {(int)Hero::Oracle,Hero::Oracle},
-        {(int)Hero::Techies,Hero::Techies},
         {(int)Hero::Winter_Wyvern,Hero::Winter_Wyvern},
     });
-    Hero heroFromInt(int hero);
+    inline Hero heroFromInt(int hero)
+    {
+        const auto iter = heroes.find(hero);
+        if(iter == heroes.end())
+            return Hero::Unknown;
+        return iter->second;
+    }
 }
-#endif /* end of include guard: HEROES_HPP_HF3BYUB7 */
+#endif
