@@ -172,3 +172,52 @@ TEST_F(PlayerTest, getLevel)
          player2.getLevel()
         );
 }
+
+TEST_F(PlayerTest, getItems)
+{
+    auto player1Items = player1.getItems();
+    auto player2Items = player2.getItems();
+    ASSERT_EQ
+        (
+         4,
+         player1Items.size()
+        );
+    ASSERT_EQ
+        (
+         5,
+         player2Items.size()
+        );
+    std::vector<dota2::Item> player1ExpectedItems =
+         {
+            dota2::Item::Bottle,
+            dota2::Item::Gauntlets_of_Strength,
+            dota2::Item::Gauntlets_of_Strength,
+            dota2::Item::Stout_Shield
+         };
+    std::vector<dota2::Item> player2ExpectedItems =
+         {
+            dota2::Item::Stout_Shield,
+            dota2::Item::Boots_of_Speed,
+            dota2::Item::Boots_of_Speed,
+            dota2::Item::Bottle,
+            dota2::Item::Bottle,
+         };
+    EXPECT_TRUE
+        (
+         std::is_permutation
+         (
+                player1Items.begin(),
+                player1Items.end(),
+                player1ExpectedItems.begin()
+         )
+        );
+    EXPECT_TRUE
+        (
+         std::is_permutation
+         (
+                player2Items.begin(),
+                player2Items.end(),
+                player2ExpectedItems.begin()
+         )
+        );
+}

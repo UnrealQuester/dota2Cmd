@@ -14,6 +14,11 @@ dota2::Player::Player(const Json::Value &json)
     lastHits = json["last_hits"].asUInt();
     hero = heroFromInt(json["hero_id"].asInt());
     level = json["level"].asUInt();
+    readItems(json);
+    for(const auto &unit : json["additional_units"])
+    {
+        readItems(unit);
+    }
 }
 
 uint32_t dota2::Player::getAccountID() const
@@ -69,4 +74,20 @@ dota2::Hero dota2::Player::getHero() const
 unsigned int dota2::Player::getLevel() const
 {
     return level;
+}
+
+const std::vector<dota2::Item> &dota2::Player::getItems() const
+{
+    return items;
+}
+
+void dota2::Player::readItems(const Json::Value &json)
+{
+    for (int i = 0; i < 8; ++i) {
+        auto key = "item_" + std::to_string(i);
+        auto itemID = json[key].asInt();
+        if(!itemID)
+            continue;
+        items.push_back(itemFromInt(itemID));
+    }
 }

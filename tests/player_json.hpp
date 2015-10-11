@@ -137,7 +137,7 @@ std::string playerJSON = R"(
                 "hero_healing" : 0,
                 "hero_id" : 80,
                 "item_0" : 41,
-                "item_1" : 0,
+                "item_1" : 41,
                 "item_2" : 29,
                 "item_3" : 0,
                 "item_4" : 0,

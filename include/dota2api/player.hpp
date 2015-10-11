@@ -3,7 +3,9 @@
 
 #include "json/json-forwards.h"
 #include "heroes.hpp"
+#include "items.hpp"
 #include <stdint.h>
+#include <vector>
 
 namespace dota2
 {
@@ -24,8 +26,11 @@ namespace dota2
             unsigned int getLastHits() const;
             unsigned int getLevel() const;
             Hero getHero() const;
+            const std::vector<Item> &getItems() const;
 
         private:
+
+            void readItems(const Json::Value &);
             uint32_t accountID = 0;
             unsigned int kills = 0;
             unsigned int deaths = 0;
@@ -37,6 +42,7 @@ namespace dota2
             unsigned int denies = 0;
             unsigned int level = 0;
             Hero hero = Hero::Unknown;
+            std::vector<Item> items;
     };
 }
 
