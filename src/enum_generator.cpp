@@ -66,8 +66,16 @@ void generateConversionInt(std::string name, std::string displayName)
 void generateEnum(Json::Value json, std::string name, std::string displayName)
 {
     std::map<int, std::string> enumItems;
+    std::map<std::string, int> names;
     for(const auto& value : json["result"][name])
-        enumItems[value["id"].asInt()] = toEnumName(value["localized_name"].asString());
+    {
+        auto name = toEnumName(value["localized_name"].asString());
+        auto &nameCount = names[name];
+        if(nameCount++)
+            name += std::to_string(nameCount);
+        enumItems[value["id"].asInt()] = name;
+    }
+
     enumItems[0] = "Unknown";
     print("#ifndef ", toUpper(name), "_HPP_GENERATED");
     print("#define ", toUpper(name), "_HPP_GENERATED");
