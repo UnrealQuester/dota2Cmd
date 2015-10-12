@@ -5,15 +5,15 @@ sudo: false
 matrix:
   include:
     - compiler: gcc
-    - compiler clang
+    - compiler: clang
     - compiler: clang
       env: LINT=ON
 
 before_install:
   - pip install --user cpp-coveralls
   - if [ "${LINT}" ]; then
-      wget http://archives.oclint.org/releases/0.8/oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
-      tar xvf oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
+      wget http://archives.oclint.org/releases/0.8/oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz;
+      tar xvf oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz;
     fi
 
 addons:
@@ -31,12 +31,11 @@ before_script:
 script:
   - export PATH=$PWD/oclint-0.8.1/bin:$PATH
   - git submodule update --init --recursive
-  - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMAND=ON ..
+  - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
   - make VERBOSE=1
   - ./tests/testrunner
   - if [ "${LINT}" ]; then
-      mv build/compile_commands.json .
-      oclint -enable-clang-static-analyzer include/dota2api/* tests/*
+      oclint -enable-clang-static-analyzer ../include/dota2api/* ../tests/*;
     fi
 
 after_success:
