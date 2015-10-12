@@ -2,14 +2,19 @@ language: cpp
 
 sudo: false
 
-compiler:
-  - clang
-  - gcc
+matrix:
+  include:
+    - compiler: gcc
+    - compiler clang
+    - compiler: clang
+      env: LINT=ON
 
 before_install:
   - pip install --user cpp-coveralls
-  - wget http://archives.oclint.org/releases/0.8/oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
-  - tar xvf oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
+  - if [ "${LINT}" ]; then
+      wget http://archives.oclint.org/releases/0.8/oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
+      tar xvf oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
+    fi
 
 addons:
   apt:
@@ -29,7 +34,10 @@ script:
   - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMAND=ON ..
   - make VERBOSE=1
   - ./tests/testrunner
-  - oclint include/dota2api/*
+  - if [ "${LINT}" ]; then
+      mv build/compile_commands.json .
+      oclint -enable-clang-static-analyzer include/dota2api/* tests/*
+    fi
 
 after_success:
   - if [ "${CXX}" == "g++-4.8" ]; then
