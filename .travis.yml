@@ -32,10 +32,11 @@ script:
   - export PATH=$PWD/oclint-0.8.1/bin:$PATH
   - git submodule update --init --recursive
   - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-  - make VERBOSE=1
-  - ./tests/testrunner
   - if [ "${LINT}" ]; then
       oclint -enable-clang-static-analyzer ../include/dota2api/* ../tests/*;
+    else
+      make VERBOSE=1;
+      ./tests/testrunner;
     fi
 
 after_success:
