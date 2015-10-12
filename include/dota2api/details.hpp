@@ -40,7 +40,7 @@ namespace dota2
             timePoint duration = timePoint(0);
             BuildingStatus buildingStatusDire;
             BuildingStatus buildingStatusRadiant;
-            GameMode gameMode = GameMode::Unknwown;
+            GameMode gameMode = GameMode::Unknown;
             std::vector<Player> direTeam;
             std::vector<Player> radiantTeam;
     };

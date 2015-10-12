@@ -9,7 +9,7 @@ namespace dota2
      * Enum containing the game modes
      */
     enum class GameMode {
-        Unknwown,
+        Unknown,
         All_Pick,
         Captains_Mode,
         Random_Draft,

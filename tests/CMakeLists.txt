@@ -5,5 +5,5 @@ add_subdirectory(googletest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 add_executable(testrunner apirequest.cpp apiendpointtest.cpp historytest.cpp
     baserequesttest.cpp detailstest.cpp buildingstest.cpp gamemodetest.cpp
-    playertest.cpp)
+    playertest.cpp herotest.cpp)
 target_link_libraries(testrunner gtest gtest_main dota2api)
