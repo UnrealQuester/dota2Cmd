@@ -8,6 +8,8 @@ compiler:
 
 before_install:
   - pip install --user cpp-coveralls
+  - wget http://archives.oclint.org/releases/0.8/oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
+  - tar xvf oclint-0.8.1-x86_64-linux-3.13.0-35-generic.tar.gz
 
 addons:
   apt:
@@ -22,6 +24,7 @@ before_script:
     fi
 
 script:
+  - export PATH=$PWD/oclint-0.8.1/bin:$PATH
   - git submodule update --init --recursive
   - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMAND=ON ..
   - make VERBOSE=1
