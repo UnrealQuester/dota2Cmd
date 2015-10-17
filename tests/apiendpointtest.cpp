@@ -4,10 +4,10 @@
 class DummyObj
 {
     public:
-        int i;
-        DummyObj(int i)
+        int dummy;
+        DummyObj(int dummy)
         {
-            this->i = i;
+            this->dummy = dummy;
         }
 };
 
@@ -42,5 +42,5 @@ TEST(APIEndpoint, Query)
     // return the resulting object
     dota2::APIEndpoint<DummyBackend> endpoint((DummyBackend(2)));
 
-    EXPECT_EQ(endpoint.query(DummyRequest(3)).i, 6);
+    EXPECT_EQ(endpoint.query(DummyRequest(3)).dummy, 6);
 }

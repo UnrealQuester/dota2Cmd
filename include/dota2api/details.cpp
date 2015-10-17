@@ -1,9 +1,9 @@
 #include "details.hpp"
 #include "json/json.h"
 
-dota2::DetailsRequest &dota2::DetailsRequest::id(MatchID id)
+dota2::DetailsRequest &dota2::DetailsRequest::id(MatchID matchID)
 {
-    query.insert({"match_id", std::to_string(id)});
+    query.insert({"match_id", std::to_string(matchID)});
 
     return *this;
 }
