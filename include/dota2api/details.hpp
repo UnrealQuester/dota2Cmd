@@ -10,7 +10,6 @@
 #include <chrono>
 #include <vector>
 
-
 namespace dota2
 {
     class Details
@@ -18,29 +17,31 @@ namespace dota2
         public:
             using timePoint = std::chrono::seconds;
 
-            Details() = default;
+            Details()       = default;
             Details(const Json::Value &json);
-            MatchID getMatchID() const;
-            Team getWinningTeam() const;
-            timePoint getStartTime() const;
-            timePoint getFirstBloodTime() const;
-            timePoint getDuration() const;
-            const BuildingStatus& getBuildingsStatusDire() const;
-            const BuildingStatus& getBuildingsStatusRadiant() const;
-            GameMode getGameMode() const;
+            MatchID                    getMatchID() const;
+            Team                       getWinningTeam() const;
+            timePoint                  getStartTime() const;
+            timePoint                  getFirstBloodTime() const;
+            timePoint                  getDuration() const;
+            const BuildingStatus &     getBuildingsStatusDire() const;
+            const BuildingStatus &     getBuildingsStatusRadiant() const;
+
+            GameMode                   getGameMode() const;
+
             const std::vector<Player> &getDireTeam() const;
+
             const std::vector<Player> &getRadiantTeam() const;
 
         private:
-
-            MatchID matchID = 0;
-            Team winningTeam = Team::DIRE;
-            timePoint startTime = timePoint(0);
-            timePoint firstBloodTime = timePoint(0);
-            timePoint duration = timePoint(0);
-            BuildingStatus buildingStatusDire;
-            BuildingStatus buildingStatusRadiant;
-            GameMode gameMode = GameMode::Unknown;
+            MatchID             matchID        = 0;
+            Team                winningTeam    = Team::DIRE;
+            timePoint           startTime      = timePoint(0);
+            timePoint           firstBloodTime = timePoint(0);
+            timePoint           duration       = timePoint(0);
+            BuildingStatus      buildingStatusDire;
+            BuildingStatus      buildingStatusRadiant;
+            GameMode            gameMode = GameMode::Unknown;
             std::vector<Player> direTeam;
             std::vector<Player> radiantTeam;
     };
@@ -52,6 +53,6 @@ namespace dota2
 
             DetailsRequest &id(MatchID id);
     };
-}
+} // namespace dota2
 
 #endif /* end of include guard: DETAILS_HPP_MJPFIVFI */

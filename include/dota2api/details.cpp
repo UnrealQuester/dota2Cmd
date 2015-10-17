@@ -4,31 +4,35 @@
 dota2::DetailsRequest &dota2::DetailsRequest::id(MatchID id)
 {
     query.insert({"match_id", std::to_string(id)});
+
     return *this;
 }
 
 dota2::Details::Details(const Json::Value &json)
 {
-    const auto& result = json["result"];
+    const auto &result = json["result"];
 
-    matchID = result["match_id"].asInt();
-    startTime = timePoint(result["start_time"].asInt64());
+    matchID        = result["match_id"].asInt();
+    startTime      = timePoint(result["start_time"].asInt64());
     firstBloodTime = timePoint(result["first_blood_time"].asInt64());
-    duration = timePoint(result["duration"].asInt64());
-    winningTeam = result["radiant_win"].asBool() ?
-        Team::RADIANT : Team::DIRE;
+    duration       = timePoint(result["duration"].asInt64());
+    winningTeam    = result["radiant_win"].asBool() ?
+                     Team::RADIANT : Team::DIRE;
+
     buildingStatusDire.set(
-            result["barracks_status_dire"].asUInt(),
-            result["tower_status_dire"].asUInt()
-            );
+        result["barracks_status_dire"].asUInt(),
+        result["tower_status_dire"].asUInt()
+        );
     buildingStatusRadiant.set(
-            result["barracks_status_radiant"].asUInt(),
-            result["tower_status_radiant"].asUInt()
-            );
+        result["barracks_status_radiant"].asUInt(),
+        result["tower_status_radiant"].asUInt()
+        );
     gameMode = gameModeFromInt(result["game_mode"].asInt());
-    for(const auto& playerJSON : result["players"]) {
+    for(const auto &playerJSON : result["players"])
+    {
         auto &team = (playerJSON["player_slot"].asUInt() & 0x80) ?
-            direTeam : radiantTeam;
+                     direTeam : radiantTeam;
+
         team.emplace_back(playerJSON);
     }
 }
@@ -52,12 +56,13 @@ dota2::Details::timePoint dota2::Details::getFirstBloodTime() const
 {
     return firstBloodTime;
 }
-const dota2::BuildingStatus& dota2::Details::getBuildingsStatusDire() const
+
+const dota2::BuildingStatus &dota2::Details::getBuildingsStatusDire() const
 {
     return buildingStatusDire;
 }
 
-const dota2::BuildingStatus& dota2::Details::getBuildingsStatusRadiant() const
+const dota2::BuildingStatus &dota2::Details::getBuildingsStatusRadiant() const
 {
     return buildingStatusRadiant;
 }
@@ -81,3 +86,4 @@ const std::vector<dota2::Player> &dota2::Details::getRadiantTeam() const
 {
     return radiantTeam;
 }
+

@@ -42,12 +42,11 @@ namespace dota2
                 set(barracksStatus, towerStatus);
             }
 
-
             void set(uint8_t barracksStatus, uint16_t towerStatus)
             {
-                buildingsStatus = Status (
-                     (barracksStatus & 63)
-                     | ((towerStatus & 2047) << 6)
+                buildingsStatus = Status(
+                    (barracksStatus & 63)
+                    | ((towerStatus & 2047) << 6)
                     );
             }
 
@@ -56,15 +55,14 @@ namespace dota2
                 return buildingsStatus[(int)building];
             }
 
-            const Status& getStatus() const
+            const Status &getStatus() const
             {
                 return buildingsStatus;
             }
 
         private:
-
             Status buildingsStatus;
     };
-}
+} // namespace dota2
 
 #endif /* end of include guard: BUILDINGS_HPP_Q0KHXQGJ */

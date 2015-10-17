@@ -7,15 +7,16 @@ class BaseRequestDerived : public dota2::BaseRequest
         BaseRequestDerived (dota2::Query query)
         {
             this->query = query;
-        };
+        }
 };
 
 TEST(BaseRequest, getQuery)
 {
-    dota2::Query query{{"1", ""}, {"foo", "bar"}};
+    dota2::Query query({{"1", ""}, {"foo", "bar"}});
+
     EXPECT_EQ
-        (
-         BaseRequestDerived(query).getQuery(),
-         query
-        );
+    (
+        BaseRequestDerived(query).getQuery(),
+        query
+    );
 }
