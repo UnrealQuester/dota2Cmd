@@ -33,7 +33,7 @@ script:
   - git submodule update --init --recursive
   - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
   - if [ "${LINT}" ]; then
-      oclint -enable-clang-static-analyzer ../include/dota2api/* ../tests/*;
+      oclint ../include/dota2api/* ../tests/*;
     else
       make VERBOSE=1;
       ./tests/testrunner;
