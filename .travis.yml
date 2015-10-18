@@ -31,4 +31,5 @@ before_script:
   - git submodule update --init --recursive
 
 script:
+  - cat cov-int/scm_log.txt
   - true
