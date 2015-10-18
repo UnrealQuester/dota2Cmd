@@ -3,22 +3,20 @@
 
 dota2::Player::Player(const Json::Value &json)
 {
-    accountID = json["account_id"].asUInt();
-    kills = json["kills"].asUInt();
-    deaths = json["deaths"].asUInt();
-    assists = json["assists"].asUInt();
-    netWorth = json["gold"].asUInt() + json["gold_spent"].asUInt();
+    accountID           = json["account_id"].asUInt();
+    kills               = json["kills"].asUInt();
+    deaths              = json["deaths"].asUInt();
+    assists             = json["assists"].asUInt();
+    netWorth            = json["gold"].asUInt() + json["gold_spent"].asUInt();
     experiencePerMinute = json["xp_per_min"].asUInt();
-    goldPerMinute = json["gold_per_min"].asUInt();
-    denies = json["denies"].asUInt();
-    lastHits = json["last_hits"].asUInt();
-    hero = heroFromInt(json["hero_id"].asInt());
-    level = json["level"].asUInt();
+    goldPerMinute       = json["gold_per_min"].asUInt();
+    denies              = json["denies"].asUInt();
+    lastHits            = json["last_hits"].asUInt();
+    hero                = heroFromInt(json["hero_id"].asInt());
+    level               = json["level"].asUInt();
     readItems(json);
     for(const auto &unit : json["additional_units"])
-    {
         readItems(unit);
-    }
 }
 
 uint32_t dota2::Player::getAccountID() const
@@ -83,11 +81,14 @@ const std::vector<dota2::Item> &dota2::Player::getItems() const
 
 void dota2::Player::readItems(const Json::Value &json)
 {
-    for (int i = 0; i < 8; ++i) {
-        auto key = "item_" + std::to_string(i);
+    for(int i = 0; i < 8; ++i)
+    {
+        auto key    = "item_" + std::to_string(i);
         auto itemID = json[key].asInt();
+
         if(!itemID)
             continue;
         items.push_back(itemFromInt(itemID));
     }
 }
+

@@ -9,7 +9,8 @@ namespace dota2
     {
         public:
             template<typename T>
-            APIEndpoint(T &&backend) : backend(std::forward<T>(backend)) { };
+            APIEndpoint(T &&backend) :
+                backend(std::forward<T>(backend)) { }
 
             template<typename Request>
             typename Request::obj query(const Request &request)
@@ -20,6 +21,6 @@ namespace dota2
         protected:
             Backend backend;
     };
-}
+} // namespace dota2
 
 #endif /* end of include guard: APIENDPOINT_HPP_7PXYTQE5 */

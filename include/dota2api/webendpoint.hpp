@@ -18,12 +18,13 @@ namespace dota2
             History query(const HistoryRequest &request);
 
         protected:
-            Json::Value _query(std::string urlFragment, const BaseRequest &reuqest);
+            Json::Value _query(std::string        urlFragment,
+                               const BaseRequest &reuqest);
 
         private:
             std::string key;
     };
     typedef APIEndpoint<WebAPIBackend> WebEndpoint;
-}
+} // namespace dota2
 
 #endif /* end of include guard: WEBENDPOINT_HPP_LMF8SPBL */

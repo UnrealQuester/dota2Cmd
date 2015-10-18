@@ -7,6 +7,7 @@
 namespace dota2
 {
     typedef std::map<std::string, std::string> Query;
+
     class BaseRequest
     {
         public:
@@ -15,6 +16,6 @@ namespace dota2
         protected:
             Query query;
     };
-}
+} // namespace dota2
 
 #endif /* end of include guard: BASEREQUEST_HPP_QQ0GJW3K */

@@ -3,7 +3,7 @@ if(MSVC AND NOT BUILD_SHARED_LIBS)
 endif()
 add_subdirectory(googletest)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-add_executable(testrunner apirequest.cpp apiendpointtest.cpp historytest.cpp
+add_executable(testrunner apirequesttest.cpp apiendpointtest.cpp historytest.cpp
     baserequesttest.cpp detailstest.cpp buildingstest.cpp gamemodetest.cpp
     playertest.cpp herotest.cpp)
 target_link_libraries(testrunner gtest gtest_main dota2api)

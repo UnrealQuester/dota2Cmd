@@ -21,7 +21,8 @@ namespace dota2
             std::vector<MatchID> matchIDs;
     };
 
-    enum SkillLevel {
+    enum SkillLevel
+    {
         ANY,
         NORMAL,
         HIGH,
@@ -43,6 +44,6 @@ namespace dota2
             HistoryRequest &matches(int numMatches);
             HistoryRequest &tournament(bool tournamentOnly);
     };
-}
+} // namespace dota2
 
 #endif /* end of include guard: HISTORY_HPP_BW780OCF */

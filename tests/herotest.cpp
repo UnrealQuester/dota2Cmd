@@ -4,13 +4,13 @@
 TEST(Hero, heroFromInt)
 {
     EXPECT_EQ
-        (
-         dota2::Hero::Unknown,
-         dota2::heroFromInt(-1)
-        );
+    (
+        dota2::Hero::Unknown,
+        dota2::heroFromInt(-1)
+    );
     EXPECT_EQ
-        (
-         dota2::Hero::Lina,
-         dota2::heroFromInt(25)
-        );
+    (
+        dota2::Hero::Lina,
+        dota2::heroFromInt(25)
+    );
 }
