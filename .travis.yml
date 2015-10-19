@@ -24,6 +24,7 @@ addons:
       ubuntu-toolchain-r-test
     packages:
       g++-4.8
+      uncrustify
 
 before_script:
   - if [ "${CXX}" == "g++"  ]; then
@@ -36,6 +37,9 @@ script:
   - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
   - if [ "${LINT}" ]; then
       oclint ../include/dota2api/* ../tests/* -max-priority-1=0 -max-priority-2=0 -max-priority-3=0;
+      cd ..;
+      uncrustify -c uncrustify.cfg --no-backup tests/*test.cpp include/dota2api/*;
+      git diff --exit-code tests/*test.cpp include/dota2api/*;
     else
       make VERBOSE=1;
       ./tests/testrunner;
