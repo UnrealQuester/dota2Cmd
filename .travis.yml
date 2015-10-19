@@ -3,13 +3,14 @@ language: cpp
 sudo: false
 
 matrix:
-  fast_finish: true
   include:
     - compiler: gcc
     - compiler: clang
-  allow_failures:
     - compiler: clang
       env: LINT=ON
+  fast_finish: true
+  allow_failures:
+    - env: LINT=ON
 
 before_install:
   - pip install --user cpp-coveralls
@@ -20,6 +21,7 @@ before_install:
       cd uncrustify;
       ./configure;
       make;
+      cd ..;
     fi
 
 addons:
@@ -35,7 +37,7 @@ before_script:
     fi
 
 script:
-  - export PATH=$PDW/uncrustify/src:$PWD/oclint-0.8.1/bin:$PATH
+  - export PATH=$PWD/uncrustify/src:$PWD/oclint-0.8.1/bin:$PATH
   - git submodule update --init --recursive
   - mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_EXE_LINKER_FLAGS=--coverage -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
   - if [ "${LINT}" ]; then
