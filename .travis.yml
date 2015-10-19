@@ -3,9 +3,11 @@ language: cpp
 sudo: false
 
 matrix:
+  fast_finish: true
   include:
     - compiler: gcc
     - compiler: clang
+  allow_failures:
     - compiler: clang
       env: LINT=ON
 
