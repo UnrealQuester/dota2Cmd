@@ -30,8 +30,8 @@ dota2::Details::Details(const Json::Value &json)
     gameMode = gameModeFromInt(result["game_mode"].asInt());
     for(const auto &playerJSON : result["players"])
     {
-        bool isDire = playerJSON["player_slot"].asUInt() & 0x80;
-        auto &team =  isDire ? direTeam : radiantTeam;
+        bool  isDire = playerJSON["player_slot"].asUInt() & 0x80;
+        auto &team   = isDire ? direTeam : radiantTeam;
 
         team.emplace_back(playerJSON);
     }
