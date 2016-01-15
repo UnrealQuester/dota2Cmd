@@ -18,7 +18,7 @@ namespace dota2
             History query(const HistoryRequest &request);
 
         protected:
-            Json::Value _query(std::string        urlFragment,
+            Json::Value _query(std::string urlFragment,
                                const BaseRequest &reuqest);
 
         private:

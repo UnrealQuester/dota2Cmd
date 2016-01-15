@@ -6,6 +6,9 @@
 const std::string indent1 = "    ";
 const std::string indent2 = indent1 + indent1;
 const std::string indent3 = indent2 + indent1;
+typedef int EnumID;
+typedef std::string EnumName;
+typedef std::map<EnumID, EnumName> EnumItems;
 
 std::string toUpper(std::string str)
 {
@@ -63,6 +66,35 @@ void generateConversionInt(std::string name, std::string displayName)
     print(indent1, "}");
 }
 
+void generateIntMap(const EnumItems &enumItems, std::string name, std::string displayName)
+{
+    print(indent1, "const std::map<int, ", displayName, "> ", name, "({");
+    for(const auto& value : enumItems)
+    {
+        print(indent2, "{", "(int)", displayName, "::", value.second, ",", displayName, "::", value.second, "},");
+    }
+    print(indent1, "});");
+}
+
+void generateHeader(std::string name)
+{
+    print("#ifndef ", toUpper(name), "_HPP_GENERATED");
+    print("#define ", toUpper(name), "_HPP_GENERATED");
+    print();
+    print("#include <map>");
+}
+
+void generateEnumClass(const EnumItems &enumItems, std::string displayName)
+{
+    print(indent1, "enum class ", displayName);
+    print(indent1, "{");
+    for(const auto& value : enumItems)
+    {
+        print(indent2, value.second, " = ", value.first, ",");
+    }
+    print(indent1, "};");
+}
+
 void generateEnum(Json::Value json, std::string name, std::string displayName)
 {
     std::map<int, std::string> enumItems;
@@ -77,27 +109,13 @@ void generateEnum(Json::Value json, std::string name, std::string displayName)
     }
 
     enumItems[0] = "Unknown";
-    print("#ifndef ", toUpper(name), "_HPP_GENERATED");
-    print("#define ", toUpper(name), "_HPP_GENERATED");
-    print();
-    print("#include <map>");
+    generateHeader(name);
     print();
     print("namespace dota2");
     print("{");
-    print(indent1, "enum class ", displayName);
-    print(indent1, "{");
-    for(const auto& value : enumItems)
-    {
-        print(indent2, value.second, " = ", value.first, ",");
-    }
-    print(indent1, "};");
+    generateEnumClass(enumItems, displayName);
     print();
-    print(indent1, "const std::map<int, ", displayName, "> ", name, "({");
-    for(const auto& value : enumItems)
-    {
-        print(indent2, "{", "(int)", displayName, "::", value.second, ",", displayName, "::", value.second, "},");
-    }
-    print(indent1, "});");
+    generateIntMap(enumItems, name, displayName);
     generateConversionInt(name, displayName);
     print("}");
     print("#endif");
