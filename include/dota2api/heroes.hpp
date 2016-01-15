@@ -118,6 +118,7 @@ namespace dota2
         Phoenix             = 110,
         Oracle              = 111,
         Winter_Wyvern       = 112,
+        Arc_Warden          = 113,
     };
 
     const std::map<int, Hero> heroes({
@@ -232,6 +233,7 @@ namespace dota2
         {(int)Hero::Phoenix, Hero::Phoenix},
         {(int)Hero::Oracle, Hero::Oracle},
         {(int)Hero::Winter_Wyvern, Hero::Winter_Wyvern},
+        {(int)Hero::Arc_Warden, Hero::Arc_Warden},
     });
     inline Hero heroFromInt(int hero)
     {
