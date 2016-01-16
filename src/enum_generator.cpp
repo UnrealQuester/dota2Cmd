@@ -1,14 +1,28 @@
 #include <iostream>
 #include <algorithm>
+#include <set>
 #include "dota2api/apirequest.hpp"
 #include "json/json.h"
 
 const std::string indent1 = "    ";
 const std::string indent2 = indent1 + indent1;
 const std::string indent3 = indent2 + indent1;
-typedef int EnumID;
-typedef std::string EnumName;
-typedef std::map<EnumID, EnumName> EnumItems;
+
+struct EnumItem
+{
+    std::string name;
+    std::string localizedName;
+    int id;
+
+    EnumItem(std::string name, std::string localizedName, int id) :
+        name(name), localizedName(localizedName), id(id) {};
+
+    bool operator <(const EnumItem &item) const
+    {
+        return id < item.id;
+    }
+};
+typedef std::set<EnumItem> EnumItems;
 
 std::string toUpper(std::string str)
 {
@@ -71,7 +85,7 @@ void generateIntMap(const EnumItems &enumItems, std::string name, std::string di
     print(indent1, "const std::map<int, ", displayName, "> ", name, "({");
     for(const auto& value : enumItems)
     {
-        print(indent2, "{", "(int)", displayName, "::", value.second, ",", displayName, "::", value.second, "},");
+        print(indent2, "{", "(int)", displayName, "::", value.name, ",", displayName, "::", value.name, "},");
     }
     print(indent1, "});");
 }
@@ -90,25 +104,27 @@ void generateEnumClass(const EnumItems &enumItems, std::string displayName)
     print(indent1, "{");
     for(const auto& value : enumItems)
     {
-        print(indent2, value.second, " = ", value.first, ",");
+        print(indent2, value.name, " = ", value.id, ",");
     }
     print(indent1, "};");
 }
 
 void generateEnum(Json::Value json, std::string name, std::string displayName)
 {
-    std::map<int, std::string> enumItems;
+    EnumItems enumItems;
+    enumItems.emplace("Unknown", "Unknown", 0);
     std::map<std::string, int> names;
+
     for(const auto& value : json["result"][name])
     {
-        auto name = toEnumName(value["localized_name"].asString());
+        auto localizedName = value["localized_name"].asString();
+        auto name = toEnumName(localizedName);
         auto &nameCount = names[name];
         if(nameCount++)
             name += std::to_string(nameCount);
-        enumItems[value["id"].asInt()] = name;
+        enumItems.emplace(name, localizedName, value["id"].asInt());
     }
 
-    enumItems[0] = "Unknown";
     generateHeader(name);
     print();
     print("namespace dota2");
