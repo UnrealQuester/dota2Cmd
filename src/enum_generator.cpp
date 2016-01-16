@@ -80,12 +80,36 @@ void generateConversionInt(std::string name, std::string displayName)
     print(indent1, "}");
 }
 
+void generateConversionString(std::string displayName)
+{
+    std::string variableName = toLower(displayName);
+    std::string mapName = variableName + "Names";
+    print(indent1, "inline std::string ", variableName, "ToString(", displayName, " ", variableName, ")");
+    print(indent1, "{");
+    print(indent2, "const auto iter = ", mapName, ".find(", variableName, ");");
+    print(indent2, "if(iter == ", mapName, ".end())");
+    print(indent3, "return ", mapName, ".at(", displayName, "::Unknown);");
+    print(indent2, "return iter->second;");
+    print(indent1, "}");
+}
+
 void generateIntMap(const EnumItems &enumItems, std::string name, std::string displayName)
 {
     print(indent1, "const std::map<int, ", displayName, "> ", name, "({");
     for(const auto& value : enumItems)
     {
         print(indent2, "{", "(int)", displayName, "::", value.name, ",", displayName, "::", value.name, "},");
+    }
+    print(indent1, "});");
+}
+
+void generateStringMap(const EnumItems &enumItems, std::string displayName)
+{
+    std::string variableName = toLower(displayName) + "Names";
+    print(indent1, "const std::map<", displayName, ", std::string> ", variableName, "({");
+    for(const auto& value : enumItems)
+    {
+        print(indent2, "{", displayName, "::", value.name, ",\"", value.localizedName, "\"},");
     }
     print(indent1, "});");
 }
@@ -132,7 +156,12 @@ void generateEnum(Json::Value json, std::string name, std::string displayName)
     generateEnumClass(enumItems, displayName);
     print();
     generateIntMap(enumItems, name, displayName);
+    print();
+    generateStringMap(enumItems, displayName);
+    print();
     generateConversionInt(name, displayName);
+    print();
+    generateConversionString(displayName);
     print("}");
     print("#endif");
 }

@@ -14,3 +14,17 @@ TEST(Item, itemFromInt)
         dota2::itemFromInt(133)
     );
 }
+
+TEST(Item, itemToString)
+{
+    EXPECT_EQ
+    (
+        "Unknown",
+        dota2::itemToString(dota2::Item::Unknown)
+    );
+    EXPECT_EQ
+    (
+        "Divine Rapier",
+        dota2::itemToString(dota2::Item::Divine_Rapier)
+    );
+}
