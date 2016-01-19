@@ -6,3 +6,4 @@ Testing
 cmake_install.cmake
 testrunner
 build/
+compile_commands.json
