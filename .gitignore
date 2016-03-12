@@ -5,5 +5,9 @@ CMakeFiles
 Testing
 cmake_install.cmake
 testrunner
+libdota2api.a
+libjsoncpp.a
+dota2cmd
+enum_generator
 build/
 compile_commands.json
