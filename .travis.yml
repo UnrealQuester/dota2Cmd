@@ -46,8 +46,7 @@ script:
       uncrustify -c uncrustify.cfg --no-backup tests/*test.cpp include/dota2api/*;
       git diff --exit-code tests/*test.cpp include/dota2api/*;
     else
-      make VERBOSE=1;
-      ./tests/testrunner;
+      make VERBOSE=1 check;
     fi
 
 after_success:
