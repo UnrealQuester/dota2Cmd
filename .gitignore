@@ -11,3 +11,4 @@ dota2cmd
 enum_generator
 build/
 compile_commands.json
+__pycache__
