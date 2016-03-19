@@ -17,3 +17,17 @@ TEST(GameMode, gameModeFromInt)
         );
     }
 }
+
+TEST(GameMode, gameModeToString)
+{
+    EXPECT_EQ
+    (
+        "Unknown",
+        dota2::gameModeToString(dota2::GameMode::Unknown)
+    );
+    EXPECT_EQ
+    (
+        "Ranked All Pick",
+        dota2::gameModeToString(dota2::GameMode::All_Pick)
+    );
+}

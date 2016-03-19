@@ -60,6 +60,32 @@ namespace dota2
         {(int)GameMode::Solo_Mid, GameMode::Solo_Mid},
     });
 
+    const std::map<GameMode, std::string> gameModeNames({
+        {GameMode::Unknown, "Unknown"},
+        {GameMode::All_Pick, "Ranked All Pick"},
+        {GameMode::Captains_Mode, "Captains Mode"},
+        {GameMode::Random_Draft, "Random Draft"},
+        {GameMode::Single_Draft, "Single Draft"},
+        {GameMode::All_Random, "All Random"},
+        {GameMode::Intro, "Intro"},
+        {GameMode::Diretide, "Diretide"},
+        {GameMode::Reverse_Captains_Mode, "Reverse Captains Mode"},
+        {GameMode::Greeviling, "Greeviling"},
+        {GameMode::Tutorial, "Tutorial"},
+        {GameMode::Mid_Only, "Mid Only"},
+        {GameMode::Least_Played, "Least Played"},
+        {GameMode::New_Player_Pool, "New Player Pool"},
+        {GameMode::Compendium_Matchmaking, "Compendium Matchmaking"},
+        {GameMode::Custom, "Custom"},
+        {GameMode::Captains_Draft, "Captains Draft"},
+        {GameMode::Balanced_Draft, "Balanced Draft"},
+        {GameMode::Ability_Draft, "Ability Draft"},
+        {GameMode::Event, "Event"},
+        {GameMode::All_Random_Death_Match, "All Random Death Match"},
+        {GameMode::Solo_Mid, "1vs1 Solo Mid"},
+    });
+
     GameMode gameModeFromInt(int mode);
+    std::string gameModeToString(GameMode gameMode);
 } // namespace dota2
 #endif /* end of include guard: GAMEMODE_HPP_G2COHEZY */
