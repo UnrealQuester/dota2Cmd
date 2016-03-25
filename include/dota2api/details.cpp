@@ -37,6 +37,18 @@ dota2::Details::Details(const Json::Value &json)
     }
 }
 
+Json::Value dota2::Details::toJson()
+{
+    Json::Value json;
+    json["match_id"] = matchID;
+    json["winner"] = dota2::teamToString(winningTeam);
+    json["first_blood_time"] = static_cast<Json::Int64>(firstBloodTime.count());
+    json["start_time"] = static_cast<Json::Int64>(startTime.count());
+    json["game_mode"] = dota2::gameModeToString(gameMode);
+    json["duration"] = static_cast<Json::Int64>(duration.count());
+    return json;
+}
+
 dota2::MatchID dota2::Details::getMatchID() const
 {
     return matchID;

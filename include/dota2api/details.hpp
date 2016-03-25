@@ -19,6 +19,7 @@ namespace dota2
 
             Details()       = default;
             Details(const Json::Value &json);
+            Json::Value toJson();
             MatchID                    getMatchID() const;
             Team                       getWinningTeam() const;
             timePoint                  getStartTime() const;

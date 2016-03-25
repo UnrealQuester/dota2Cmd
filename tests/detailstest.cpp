@@ -12,10 +12,12 @@ class DetailsTest : public testing::Test
             Json::Reader().parse(matchdetailsJSON, json);
 
             d = dota2::Details(json);
+            this->json = d.toJson();
         }
 
     protected:
         dota2::Details d;
+        Json::Value json;
 };
 
 TEST_F(DetailsTest, getMatchID)
@@ -23,6 +25,11 @@ TEST_F(DetailsTest, getMatchID)
     EXPECT_EQ
     (
         1534328999,
+        d.getMatchID()
+    );
+    EXPECT_EQ
+    (
+        json["match_id"],
         d.getMatchID()
     );
 }
@@ -34,6 +41,11 @@ TEST_F(DetailsTest, getWinningTeam)
         dota2::Team::DIRE,
         d.getWinningTeam()
     );
+    EXPECT_EQ
+    (
+        json["winner"],
+        "Dire"
+    );
 }
 
 TEST_F(DetailsTest, getFirstBloodTime)
@@ -43,6 +55,11 @@ TEST_F(DetailsTest, getFirstBloodTime)
         328,
         d.getFirstBloodTime().count()
     );
+    EXPECT_EQ
+    (
+        json["first_blood_time"].asLargestInt(),
+        d.getFirstBloodTime().count()
+    );
 }
 
 TEST_F(DetailsTest, getStartTime)
@@ -50,6 +67,11 @@ TEST_F(DetailsTest, getStartTime)
     EXPECT_EQ
     (
         1433676675,
+        d.getStartTime().count()
+    );
+    EXPECT_EQ
+    (
+        json["start_time"].asLargestInt(),
         d.getStartTime().count()
     );
 }
@@ -79,6 +101,11 @@ TEST_F(DetailsTest, getGameMode)
         dota2::GameMode::Solo_Mid,
         d.getGameMode()
     );
+    EXPECT_EQ
+    (
+        json["game_mode"],
+        "1vs1 Solo Mid"
+    );
 }
 
 TEST_F(DetailsTest, getDuration)
@@ -86,6 +113,11 @@ TEST_F(DetailsTest, getDuration)
     EXPECT_EQ
     (
         511,
+        d.getDuration().count()
+    );
+    EXPECT_EQ
+    (
+        json["duration"].asLargestInt(),
         d.getDuration().count()
     );
 }
