@@ -1,4 +1,4 @@
-find_package(CURL)
+find_package(CURL REQUIRED)
 add_library(dota2api dota2api/apirequest.cpp dota2api/history.cpp
     dota2api/baserequest.cpp dota2api/webendpoint.cpp dota2api/details.cpp
     dota2api/gamemode.cpp dota2api/player.cpp)
