@@ -2,6 +2,7 @@
 #define GAMEMODE_HPP_G2COHEZY
 
 #include <map>
+#include <string>
 
 namespace dota2
 {
